@@ -28,7 +28,7 @@ def execute_elite_testing(path: str, seed: int, run_id: int, parallel_irace: int
         file.write("\n## Number of threads\n")
         file.write(f"parallel = {parallel_irace}\n")
 
-    print(f"{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}  Elite Testing Run {run_id} ready (path = {path})", flush=True)
+    print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}  Elite Testing Run {run_id} ready (path = {path})", flush=True)
     
     log_file = path / 'output.log'
     try:
