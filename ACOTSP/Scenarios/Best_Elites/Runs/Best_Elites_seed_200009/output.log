@@ -1,0 +1,1275 @@
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.2.0.9000.e99d017
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/flora/R/x86_64-pc-linux-gnu-library/4.5/irace
+# called with: --only-test configurations.txt --scenario scenario.txt
+# 2026-11-07 02:02:41 -03: Checking scenario.
+# 2026-11-07 02:02:41 -03: Reading parameter file '/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_200009/parameters.txt'.
+# 2026-11-07 02:02:41 -03: 1 expression(s) specifying forbidden configurations read.
+## irace scenario:
+scenarioFile = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_200009/scenario.txt"
+execDir = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_200009/Results"
+parameterFile = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_200009/parameters.txt"
+parameters = <environment>
+initConfigurations = NULL
+configurationsFile = ""
+logFile = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_200009/Results/irace.Rdata"
+recoveryFile = ""
+instances = c("/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-1.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-10.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-102.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-103.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-104.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-106.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-107.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-108.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-109.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-11.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-110.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-111.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-112.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-113.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-114.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-115.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-117.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-119.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-12.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-120.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-121.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-122.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-124.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-126.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-127.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-129.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-13.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-130.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-131.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-132.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-133.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-134.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-135.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-136.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-137.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-138.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-139.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-14.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-140.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-15.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-16.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-17.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-18.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-19.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-2.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-20.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-201.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-203.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-204.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-205.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-206.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-207.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-208.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-209.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-21.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-210.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-211.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-212.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-214.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-215.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-216.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-217.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-219.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-22.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-220.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-221.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-222.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-223.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-224.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-226.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-227.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-228.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-229.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-23.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-230.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-231.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-232.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-233.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-234.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-235.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-236.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-237.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-238.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-239.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-24.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-240.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-25.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-26.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-27.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-28.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-29.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-30.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-301.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-303.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-304.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-305.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-306.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-307.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-308.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-309.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-31.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-310.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-311.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-312.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-313.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-314.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-316.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-317.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-318.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-319.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-320.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-321.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-322.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-323.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-324.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-326.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-327.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-328.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-329.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-33.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-331.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-332.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-333.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-334.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-336.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-337.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-338.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-339.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-34.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-340.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-35.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-36.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-37.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-38.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-39.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-40.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-401.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-402.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-403.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-404.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-405.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-406.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-407.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-408.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-409.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-410.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-411.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-412.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-413.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-414.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-415.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-416.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-417.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-418.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-419.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-420.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-421.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-422.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-423.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-424.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-425.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-426.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-427.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-428.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-429.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-430.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-431.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-433.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-434.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-435.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-436.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-437.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-438.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-439.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-440.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-501.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-503.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-504.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-505.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-506.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-508.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-509.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-510.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-511.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-512.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-514.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-515.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-516.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-517.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-518.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-519.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-520.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-521.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-522.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-523.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-524.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-525.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-526.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-527.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-528.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-530.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-531.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-533.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-534.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-535.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-536.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-537.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-538.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-539.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-540.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-6.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-601.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-602.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-603.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-605.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-607.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-608.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-609.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-610.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-611.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-612.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-613.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-614.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-615.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-616.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-617.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-618.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-619.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-620.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-621.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-622.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-623.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-624.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-625.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-626.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-627.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-628.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-629.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-630.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-631.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-632.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-633.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-634.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-635.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-636.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-637.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-638.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-640.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-7.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-701.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-703.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-704.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-705.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-706.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-707.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-708.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-709.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-710.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-712.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-713.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-714.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-715.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-716.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-718.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-719.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-720.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-721.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-722.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-723.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-724.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-725.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-726.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-727.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-728.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-729.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-730.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-731.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-732.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-733.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-734.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-735.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-736.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-737.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-738.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-739.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-740.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-8.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-801.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-802.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-803.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-804.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-805.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-807.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-808.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-809.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-810.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-811.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-812.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-813.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-814.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-815.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-816.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-817.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-818.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-819.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-820.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-821.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-822.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-823.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-824.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-826.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-827.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-828.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-829.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-830.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-831.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-833.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-834.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-835.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-836.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-837.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-838.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-839.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-840.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-9.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-901.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-902.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-903.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-904.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-905.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-906.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-908.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-909.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-910.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-911.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-912.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-913.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-914.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-915.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-916.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-917.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-918.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-919.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-920.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-921.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-922.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-923.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-924.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-926.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-927.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-928.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-929.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-930.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-931.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-932.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-933.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-934.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-935.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-936.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-939.tsp")
+trainInstancesDir = "/home/flora/executions_irace/ACOTSP/TrainingInstances"
+trainInstancesFile = ""
+sampleInstances = TRUE
+testInstancesDir = "/home/flora/executions_irace/ACOTSP/TestingInstances"
+testInstancesFile = ""
+testInstances = c("1t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-101.tsp", "2t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-105.tsp", "3t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-116.tsp", "4t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-118.tsp", "5t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-123.tsp", "6t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-125.tsp", "7t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-128.tsp", "8t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-202.tsp", "9t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-213.tsp", "10t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-218.tsp", "11t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-225.tsp", "12t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-3.tsp", "13t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-302.tsp", "14t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-315.tsp", "15t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-32.tsp", "16t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-325.tsp", "17t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-330.tsp", "18t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-335.tsp", "19t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-4.tsp", "20t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-432.tsp", "21t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-5.tsp", "22t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-502.tsp", "23t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-507.tsp", "24t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-513.tsp", "25t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-529.tsp", "26t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-532.tsp", "27t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-604.tsp", "28t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-606.tsp", "29t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-639.tsp", "30t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-702.tsp", "31t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-711.tsp", "32t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-717.tsp", "33t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-806.tsp", "34t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-825.tsp", "35t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-832.tsp", "36t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-907.tsp", "37t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-925.tsp", "38t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-937.tsp", "39t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-938.tsp", "40t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-940.tsp")
+testNbElites = 1L
+testIterationElites = FALSE
+testType = "friedman"
+firstTest = 5L
+blockSize = 1L
+eachTest = 1L
+targetRunner = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_200009/target-runner"
+targetRunnerLauncher = ""
+targetCmdline = "{configurationID} {instanceID} {seed} {instance} {bound} {targetRunnerArgs}"
+targetRunnerRetries = 0L
+targetRunnerTimeout = 0L
+targetRunnerData = ""
+targetRunnerParallel = NULL
+targetEvaluator = NULL
+deterministic = FALSE
+maxExperiments = 5500L
+minExperiments = NA_character_
+maxTime = 0L
+budgetEstimation = 0.05
+minMeasurableTime = 0.01
+parallel = 20L
+loadBalancing = TRUE
+mpi = FALSE
+batchmode = "0"
+quiet = FALSE
+debugLevel = 0L
+seed = 200009L
+softRestart = TRUE
+softRestartThreshold = 1e-04
+elitist = TRUE
+elitistNewInstances = 1L
+elitistLimit = 2L
+repairConfiguration = NULL
+capping = FALSE
+cappingAfterFirstTest = FALSE
+cappingType = "median"
+boundType = "candidate"
+boundMax = NULL
+boundDigits = 0L
+boundPar = 1L
+boundAsTimeout = TRUE
+postselection = TRUE
+aclib = FALSE
+nbIterations = 0L
+nbExperimentsPerIteration = 0L
+minNbSurvival = 0L
+nbConfigurations = 0L
+mu = 5L
+confidence = 0.95
+initSampling = "sobol"
+## end of irace scenario
+# 2026-11-07 02:02:41 -03: Read 160 configuration(s) from file 'configurations.txt'
+# 2026-11-07 02:02:41 -03: Testing configurations (in the order given as input): 
+    algorithm localsearch alpha beta  rho ants   q0 rasrank elitistants nnls
+1         acs           3  2.61 2.28 0.72   63 0.70      NA          NA   18
+2         acs           3  2.20 6.00 0.58   49 0.31      NA          NA   13
+3         acs           3  3.72 4.36 0.72   67 0.21      NA          NA   12
+4         acs           3  1.97 8.28 0.94   40 0.24      NA          NA   14
+5         acs           3  3.53 8.19 0.63   63 0.55      NA          NA   15
+6         acs           3  2.29 4.56 0.55   64 0.86      NA          NA   10
+7         acs           3  4.04 7.62 0.78   70 0.83      NA          NA   13
+8         acs           3  3.66 2.40 0.91   67 0.17      NA          NA   16
+9         acs           3  4.64 3.85 0.85   75 0.70      NA          NA   17
+10        acs           3  4.22 7.19 0.86   72 0.58      NA          NA   15
+11        acs           3  1.50 3.28 0.52   48 0.82      NA          NA   13
+12        acs           3  4.23 8.70 0.64   65 0.39      NA          NA   12
+13        acs           3  2.35 4.06 0.40   54 0.65      NA          NA   14
+14        acs           3  2.58 6.69 0.20   40 0.48      NA          NA   15
+15        acs           3  3.46 4.01 0.68   70 0.78      NA          NA   16
+16        acs           3  3.11 6.16 0.08   40 0.68      NA          NA   18
+17        acs           3  2.94 4.65 0.95   65 0.38      NA          NA   10
+18        acs           3  2.15 6.42 0.92   50 0.06      NA          NA   13
+19        acs           3  4.42 6.56 0.82   72 0.68      NA          NA   13
+20        acs           3  2.87 7.86 0.85   61 0.70      NA          NA   12
+21        acs           3  2.69 0.52 0.14   36 0.80      NA          NA   33
+22        acs           3  2.80 9.30 0.32   42 0.15      NA          NA   11
+23        acs           3  2.35 7.84 0.21   27 0.51      NA          NA   10
+24        acs           3  2.26 5.46 0.05   14 0.58      NA          NA   11
+25        acs           3  3.94 9.01 0.15   41 0.47      NA          NA   11
+26        acs           3  3.05 0.21 0.14   52 0.95      NA          NA   21
+27        acs           3  2.60 6.01 0.51   58 0.70      NA          NA   21
+28        acs           3  2.73 1.56 0.65   53 0.15      NA          NA   30
+29        acs           3  3.57 8.62 0.19   44 0.18      NA          NA   19
+30        acs           3  1.98 4.82 0.22   43 0.68      NA          NA   11
+31        acs           3  1.52 4.01 0.43   27 0.71      NA          NA   12
+32        acs           3  2.70 2.93 0.17   54 0.79      NA          NA   12
+33        acs           3  4.53 8.58 0.11   45 0.21      NA          NA   16
+34        acs           3  3.30 6.30 0.04   31 0.48      NA          NA   10
+35        acs           3  2.57 7.66 0.57   41 0.17      NA          NA   13
+36        acs           3  3.29 7.58 0.52   58 0.85      NA          NA   19
+37        ras           3  3.19 1.90 0.40   49   NA      13          NA   34
+38        acs           3  2.18 4.26 0.54   49 0.26      NA          NA    9
+39        acs           3  3.35 7.08 0.74   63 0.39      NA          NA   15
+40        ras           3  3.14 3.73 0.91   72   NA      17          NA   19
+41        acs           3  4.21 7.84 0.63   63 0.23      NA          NA   14
+42        acs           3  4.68 6.21 0.77   76 0.73      NA          NA   10
+43        acs           3  1.90 0.61 0.52   51 0.85      NA          NA   11
+44        acs           3  2.42 1.96 0.39   45 0.20      NA          NA   12
+45        acs           3  3.54 4.09 0.19   54 0.35      NA          NA   13
+46        acs           3  2.88 5.64 0.26   51 0.53      NA          NA   14
+47        acs           3  4.30 8.51 0.72   67 0.29      NA          NA   11
+48        acs           3  4.38 8.68 0.98   70 0.74      NA          NA   15
+49        acs           3  3.99 5.58 0.10   53 0.85      NA          NA   13
+50        acs           3  2.47 5.73 0.27   46 0.33      NA          NA   13
+51        acs           3  4.52 6.47 0.88   72 0.48      NA          NA   14
+52        acs           3  3.14 7.54 0.90   66 0.64      NA          NA   14
+53        acs           3  2.87 2.72 0.13   46 0.71      NA          NA   12
+54        acs           3  3.15 4.84 0.48   59 0.61      NA          NA   11
+55        acs           3  3.39 2.79 0.20   49 0.17      NA          NA   11
+56        acs           3  3.26 3.86 0.51   61 0.35      NA          NA   12
+57        acs           3  2.13 4.52 0.48   48 0.34      NA          NA   15
+58        acs           3  3.65 8.31 0.19   47 0.22      NA          NA   13
+59        acs           3  1.67 2.13 0.34   30 0.31      NA          NA   13
+60        acs           3  3.57 4.59 0.91   77 0.88      NA          NA   10
+61        acs           3  3.54 7.47 0.27   48 0.58      NA          NA   36
+62        acs           3  2.64 6.51 0.85   57 0.34      NA          NA   10
+63        acs           3  3.13 8.75 0.53   49 0.52      NA          NA   18
+64       mmas           3  4.95 8.39 0.13   20   NA      NA          NA   22
+65        acs           3  2.94 5.94 0.96   68 0.66      NA          NA    8
+66       mmas           3  2.54 2.66 0.13   17   NA      NA          NA    9
+67        ras           3  2.49 1.46 0.81   78   NA      21          NA   38
+68        ras           3  2.85 2.44 0.49   41   NA      14          NA   19
+69        acs           3  4.72 8.63 0.49   63 0.72      NA          NA   35
+70        acs           3  2.83 4.28 0.56   65 0.86      NA          NA   13
+71        ras           3  2.25 2.33 0.89   64   NA      16          NA   10
+72       mmas           3  1.12 6.61 0.78   20   NA      NA          NA   10
+73        acs           3  1.99 8.27 0.99   42 0.45      NA          NA   11
+74        acs           3  1.99 3.77 0.75   51 0.52      NA          NA   21
+75        acs           3  3.36 7.99 0.56   25 0.08      NA          NA   31
+76        acs           3  4.37 5.09 0.02   30 0.65      NA          NA   13
+77        acs           3  2.34 4.74 0.27   44 0.31      NA          NA   10
+78        acs           3  3.04 5.95 0.33   59 0.67      NA          NA   13
+79        acs           3  2.37 5.76 0.84   58 0.32      NA          NA   11
+80        ras           3  4.76 5.04 0.92   95   NA      18          NA   37
+81        acs           3  4.55 4.90 0.66   69 0.32      NA          NA   14
+82        acs           3  2.01 3.89 0.60   62 0.86      NA          NA   11
+83        acs           3  2.87 6.53 0.69   59 0.32      NA          NA   11
+84        acs           3  2.53 5.70 0.80   62 0.65      NA          NA   14
+85        acs           3  3.00 2.37 0.60   61 0.51      NA          NA   14
+86        acs           3  2.28 3.85 0.54   54 0.52      NA          NA   14
+87        acs           3  3.43 4.71 0.29   54 0.07      NA          NA   13
+88        acs           3  2.76 3.45 0.68   61 0.21      NA          NA   14
+89        acs           3  4.49 2.08 0.57   74 0.86      NA          NA   10
+90        acs           3  3.34 4.27 0.40   63 0.77      NA          NA   12
+91        acs           3  2.13 4.80 0.50   47 0.32      NA          NA   12
+92        acs           3  2.18 4.46 0.33   50 0.30      NA          NA   12
+93        acs           3  4.86 6.52 0.23   60 0.64      NA          NA   19
+94        acs           3  1.86 4.65 0.82   51 0.63      NA          NA   18
+95        acs           3  3.61 5.07 0.69   70 0.68      NA          NA   11
+96        acs           3  3.29 5.18 0.27   52 0.34      NA          NA   14
+97        acs           3  3.96 4.10 0.65   67 0.20      NA          NA   13
+98        acs           3  2.39 3.33 0.12   52 0.88      NA          NA   12
+99        acs           3  4.39 4.13 0.07   52 0.66      NA          NA   11
+100       acs           3  3.58 4.92 0.62   63 0.25      NA          NA   15
+101       ras           3  3.42 5.62 0.95   59   NA      19          NA   24
+102       acs           3  2.71 5.47 0.38   51 0.50      NA          NA   10
+103       acs           3  1.83 4.97 0.41   40 0.54      NA          NA   24
+104       acs           3  2.56 3.04 0.37   56 0.75      NA          NA   13
+105       acs           3  4.05 5.80 0.68   71 0.64      NA          NA   11
+106       acs           3  1.87 5.07 0.35   40 0.70      NA          NA   16
+107       acs           3  2.52 4.27 0.15   48 0.88      NA          NA   18
+108       acs           3  4.76 7.80 0.15   54 0.43      NA          NA   14
+109       acs           3  2.17 2.03 0.47   46 0.26      NA          NA    9
+110       acs           3  3.96 8.60 0.51   65 0.83      NA          NA   11
+111       acs           3  2.92 8.58 0.88   65 0.41      NA          NA   11
+112       acs           3  4.22 4.24 0.26   64 0.84      NA          NA   17
+113       acs           3  2.66 6.37 0.10   38 0.04      NA          NA   12
+114       acs           3  2.35 7.79 0.24   38 0.44      NA          NA   14
+115       acs           3  2.68 9.23 0.61   45 0.13      NA          NA   15
+116       acs           3  2.95 8.62 0.75   53 0.13      NA          NA   10
+117       acs           3  3.68 8.37 0.60   54 0.42      NA          NA   33
+118       acs           3  3.19 6.72 0.31   52 0.40      NA          NA   11
+119       acs           3  3.92 7.11 0.56   62 0.33      NA          NA   13
+120       acs           3  2.86 6.29 0.24   52 0.80      NA          NA   17
+121       acs           3  3.14 4.60 0.14   51 0.72      NA          NA   11
+122       acs           3  2.11 4.33 0.70   50 0.14      NA          NA   15
+123       acs           3  2.80 1.44 0.32   51 0.30      NA          NA   12
+124       acs           3  3.64 3.40 0.22   63 0.85      NA          NA   11
+125       acs           3  3.76 6.04 0.87   70 0.49      NA          NA   10
+126       acs           3  3.68 2.64 0.24   66 0.90      NA          NA   12
+127       acs           3  2.79 3.31 0.64   64 0.58      NA          NA   14
+128       acs           3  2.81 3.76 0.79   62 0.10      NA          NA   16
+129       acs           3  4.47 6.73 0.89   71 0.12      NA          NA   15
+130       acs           3  4.85 5.97 0.66   72 0.34      NA          NA   12
+131       acs           3  2.99 0.76 0.09   38 0.72      NA          NA   15
+132       acs           3  3.59 3.45 0.23   55 0.58      NA          NA   12
+133       acs           3  3.41 7.27 0.65   67 0.62      NA          NA   13
+134       acs           3  3.01 2.17 0.42   67 0.86      NA          NA   10
+135       acs           3  3.02 7.05 0.61   55 0.34      NA          NA   10
+136       acs           3  4.45 3.94 0.58   73 0.71      NA          NA   13
+137       acs           3  4.74 6.00 0.11   53 0.40      NA          NA   11
+138       acs           3  3.32 3.83 0.16   54 0.43      NA          NA   11
+139       acs           3  4.94 5.41 0.74   73 0.42      NA          NA   13
+140       acs           3  4.65 5.81 0.44   67 0.17      NA          NA   10
+141       acs           3  1.43 4.83 0.52   34 0.53      NA          NA   14
+142       acs           3  1.08 2.29 0.85   20 0.78      NA          NA   14
+143       acs           3  2.08 3.46 0.62   46 0.24      NA          NA   13
+144       acs           3  2.06 3.91 0.49   54 0.56      NA          NA   16
+145       acs           3  1.46 3.42 0.82   33 0.50      NA          NA   12
+146       acs           3  3.09 6.56 0.44   52 0.18      NA          NA   12
+147       acs           3  4.40 8.51 0.89   70 0.73      NA          NA   12
+148      mmas           3  0.99 5.78 0.81   46   NA      NA          NA   14
+149       acs           3  2.79 7.23 0.84   65 0.67      NA          NA   13
+150       acs           3  2.55 8.32 0.49   52 0.37      NA          NA   10
+151       acs           3  3.94 5.54 0.77   70 0.69      NA          NA   19
+152      mmas           3  0.96 4.56 0.72   23   NA      NA          NA   22
+153       acs           3  4.34 4.32 0.18   60 0.67      NA          NA   11
+154       acs           3  3.29 4.10 0.37   62 0.77      NA          NA   19
+155       acs           3  2.83 3.31 0.38   67 0.84      NA          NA   16
+156       acs           3  1.95 4.07 0.94   58 0.53      NA          NA   12
+157       acs           3  2.85 5.52 0.89   61 0.53      NA          NA   16
+158       acs           3  2.70 4.27 0.58   62 0.32      NA          NA   11
+159       acs           3  3.82 3.50 0.16   51 0.31      NA          NA   14
+160       acs           3  2.00 4.62 0.75   45 0.60      NA          NA   14
+    dlb
+1     1
+2     1
+3     1
+4     1
+5     1
+6     1
+7     1
+8     1
+9     1
+10    1
+11    1
+12    1
+13    1
+14    1
+15    1
+16    1
+17    1
+18    1
+19    1
+20    1
+21    1
+22    0
+23    0
+24    0
+25    0
+26    0
+27    0
+28    0
+29    0
+30    0
+31    0
+32    0
+33    0
+34    1
+35    0
+36    0
+37    0
+38    0
+39    0
+40    0
+41    1
+42    1
+43    1
+44    1
+45    1
+46    1
+47    1
+48    1
+49    1
+50    1
+51    1
+52    1
+53    1
+54    1
+55    1
+56    1
+57    1
+58    1
+59    1
+60    1
+61    0
+62    0
+63    0
+64    0
+65    0
+66    0
+67    1
+68    0
+69    0
+70    0
+71    0
+72    0
+73    0
+74    0
+75    1
+76    0
+77    0
+78    0
+79    0
+80    1
+81    1
+82    1
+83    1
+84    1
+85    1
+86    1
+87    1
+88    1
+89    1
+90    1
+91    1
+92    1
+93    1
+94    1
+95    1
+96    1
+97    1
+98    1
+99    1
+100   1
+101   0
+102   1
+103   1
+104   1
+105   1
+106   1
+107   1
+108   1
+109   1
+110   1
+111   1
+112   0
+113   1
+114   1
+115   0
+116   0
+117   0
+118   0
+119   1
+120   1
+121   1
+122   1
+123   1
+124   1
+125   1
+126   1
+127   1
+128   1
+129   1
+130   1
+131   1
+132   1
+133   1
+134   1
+135   1
+136   1
+137   1
+138   1
+139   1
+140   1
+141   1
+142   1
+143   1
+144   1
+145   1
+146   1
+147   1
+148   1
+149   1
+150   1
+151   1
+152   1
+153   1
+154   1
+155   1
+156   1
+157   1
+158   1
+159   1
+160   1
+# 2026-11-07 14:26:54 -03: Testing results (column number is configuration ID in no particular order):
+         seeds        1        2        3        4        5        6        7
+1t  2020466491 32657442 32657998 32639829 32722928 32619312 32663067 32600491
+2t   145079561 32592678 32707147 32726824 32657314 32673116 32702186 32669567
+3t   968591162 32607369 32614058 32638349 32622915 32599014 32561853 32610363
+4t  1091389250 32709953 32722077 32715980 32609593 32680192 32629699 32653140
+5t  1450663194 32639166 32580314 32664831 32643788 32636439 32592429 32581665
+6t   409506265 32676744 32661133 32713147 32677652 32661737 32716103 32713234
+7t  1153185464 32368827 32339600 32406873 32406463 32485022 32482528 32417171
+8t  2019496539 32446939 32479846 32421208 32441755 32376065 32422948 32445535
+9t   858693155 33057355 32946291 32957635 32900005 32914446 33003265 32938056
+10t 1783642986 32823240 32742517 32747504 32769155 32803512 32826544 32789811
+11t 1322321024 32651798 32586875 32669344 32622483 32632060 32752098 32647038
+12t  962521631 32702892 32698728 32681372 32731387 32648905 32668443 32693439
+13t 1521132738 32670817 32624343 32716136 32666165 32625918 32609766 32651939
+14t 2036149874 32719460 32708072 32693136 32684228 32616637 32688030 32732189
+15t 1012080293 32946701 33016243 32990326 32960779 32945585 32981058 32954699
+16t  154636880 32545473 32570507 32568952 32524348 32544552 32479242 32534626
+17t 1800912290 32504806 32550070 32493765 32461512 32514355 32588762 32479686
+18t 1066504374 32646121 32610390 32536494 32623975 32616802 32610943 32613513
+19t  386640612 32634280 32725344 32619134 32617796 32601796 32631193 32676990
+20t 1076835885 32958030 32968701 33020812 32932834 32966951 32927211 32974522
+21t 2047557462 33018354 32954470 33008163 32957309 33047654 33097820 33024452
+22t  282695655 32831737 32859541 32808953 32714202 32725995 32840010 32841464
+23t 1188420733 32461264 32427988 32394499 32386103 32482186 32439798 32450418
+24t 1866239196 32610854 32592012 32583208 32561908 32573810 32580292 32542854
+25t   73844554 32594629 32715071 32656794 32691138 32714993 32745191 32635178
+26t  426460266 32658337 32574948 32634392 32611172 32574587 32577470 32560080
+27t 1558265915 32604509 32607944 32687410 32594231 32649457 32640431 32601761
+28t 1635562702 32797546 32636197 32787781 32712209 32732792 32736601 32710280
+29t  609497840 32497081 32594487 32558809 32518229 32519447 32500471 32544157
+30t 1424469560 32551767 32466503 32567223 32652704 32579491 32585324 32520203
+31t  406542650 32919226 32890593 32943751 32884766 32930914 32926287 32903844
+32t  129543549 32591951 32542373 32616089 32503348 32552850 32508690 32620046
+33t 1217938225 33088025 33004134 33118819 33105838 33067630 33124376 33134000
+34t 1177182267 32421724 32455648 32441626 32392458 32365159 32419297 32395384
+35t 1653463429 33007011 33020303 32986471 32915048 32964174 33012896 33013284
+36t  412887616 32616823 32561543 32658623 32627121 32605043 32623927 32607504
+37t  290029846 32892995 32982978 32946025 32955216 32920358 32932918 32938493
+38t 1311489594 32742864 32846829 32923874 32778790 32758217 32759781 32779852
+39t 1128283546 32402471 32429851 32434058 32363285 32464379 32416206 32411691
+40t  743387593 32334021 32362524 32350934 32288437 32316077 32325041 32288029
+           8        9       10       11       12       13       14       15
+1t  32711246 32634186 32639676 32637848 32709348 32671757 32735776 32595808
+2t  32672919 32683328 32707499 32633513 32608590 32638281 32574310 32645084
+3t  32564052 32575103 32646496 32573121 32589980 32558539 32599047 32580369
+4t  32708200 32739033 32650703 32627425 32687904 32665241 32644058 32633096
+5t  32556766 32560459 32607829 32606171 32557412 32576156 32611765 32589336
+6t  32677713 32714453 32648393 32658750 32657289 32633955 32649143 32644473
+7t  32362557 32345778 32413362 32445701 32378931 32377859 32337358 32509195
+8t  32445703 32407491 32405276 32456569 32521098 32458821 32379214 32408680
+9t  32961834 32988145 33038623 32974831 32912365 32905242 33006536 32973124
+10t 32801153 32794065 32833644 32729466 32767853 32772608 32788673 32802594
+11t 32617223 32629352 32650340 32780033 32640307 32577025 32654162 32702037
+12t 32748047 32786137 32666755 32655041 32672745 32669020 32719163 32730047
+13t 32664548 32627605 32602754 32681595 32660488 32589110 32716804 32586826
+14t 32676963 32722673 32660369 32759333 32698527 32630086 32684286 32681882
+15t 32911202 32928147 32954252 32977667 32905036 32943620 32949778 32892821
+16t 32561019 32586940 32522478 32534741 32465538 32516116 32560844 32545788
+17t 32422310 32493100 32487640 32436156 32370765 32436157 32445958 32435459
+18t 32612255 32645514 32572367 32551221 32498603 32577596 32598613 32634086
+19t 32640768 32692590 32611312 32620241 32629163 32603522 32622740 32631315
+20t 32880273 32953437 32920049 32986767 32967857 32995738 32999692 33002976
+21t 32981419 32987257 32923619 32977747 32939725 33004778 32953666 32952543
+22t 32762603 32824356 32739369 32894515 32773650 32751641 32727909 32796889
+23t 32446069 32426594 32449640 32393560 32403108 32379874 32383186 32372770
+24t 32672016 32614673 32688362 32648248 32663739 32588101 32574649 32567303
+25t 32691893 32675250 32621809 32677183 32700102 32662334 32646926 32730134
+26t 32566022 32613513 32548027 32548230 32569174 32574632 32636174 32588756
+27t 32653861 32590760 32576163 32701011 32637373 32562949 32607116 32657117
+28t 32765940 32912221 32684491 32669004 32785245 32716624 32756903 32766326
+29t 32601304 32592811 32593341 32553314 32534375 32463628 32541526 32541593
+30t 32531809 32604948 32535845 32572058 32520724 32548514 32551821 32508294
+31t 32912403 32888298 32859751 32877588 32883433 32897530 32840245 32852180
+32t 32526907 32592526 32585798 32494020 32546637 32546618 32525899 32516258
+33t 33141452 33127218 33123416 33122640 33081484 33100421 33071451 33097493
+34t 32505898 32511512 32425156 32474399 32348086 32437167 32454319 32372910
+35t 33035562 32975706 32962441 33078892 32969211 33023487 32944498 33041014
+36t 32624791 32627200 32511777 32595594 32556739 32581612 32580893 32580508
+37t 32959738 32932198 32913719 32920042 32918262 32895113 32876727 32927901
+38t 32770512 32737865 32822881 32821921 32832940 32774305 32763135 32765905
+39t 32397936 32465793 32372189 32323647 32345929 32365954 32464026 32396534
+40t 32286222 32318136 32303473 32282820 32336802 32317740 32276573 32428201
+          16       17       18       19       20       21       22       23
+1t  32666643 32759384 32642663 32643278 32686757 32641470 32609016 32602206
+2t  32625130 32692202 32681833 32674022 32729859 32638288 32555139 32648730
+3t  32577751 32554055 32602992 32594305 32611173 32573125 32622860 32624226
+4t  32688136 32634866 32673479 32753971 32635965 32664983 32684440 32614322
+5t  32594170 32654551 32569643 32669093 32634694 32533278 32617615 32557152
+6t  32613721 32642136 32690215 32640193 32733989 32657472 32632268 32654442
+7t  32455984 32446218 32514410 32427029 32448631 32384549 32387143 32374898
+8t  32411335 32447139 32476880 32490802 32435713 32445715 32325998 32378187
+9t  33003020 32919580 33009842 32937167 32921021 33014701 32921580 33020560
+10t 32708810 32778393 32785947 32781108 32755534 32779555 32803319 32666111
+11t 32666719 32608414 32648484 32698732 32598038 32620977 32638057 32573055
+12t 32661277 32746411 32668100 32708066 32658626 32746209 32625973 32703240
+13t 32655399 32636474 32630280 32713488 32743225 32668849 32576316 32719857
+14t 32687834 32700996 32733469 32612212 32756606 32619719 32641186 32694240
+15t 32887432 33001133 33062655 33011634 32936640 32893869 32948373 32849135
+16t 32531589 32642239 32571882 32563176 32500603 32474903 32532012 32596585
+17t 32367763 32598941 32500535 32467496 32551854 32490196 32364750 32392742
+18t 32570099 32569836 32575938 32583212 32604941 32563814 32550551 32585120
+19t 32611029 32723393 32667877 32700611 32695408 32635375 32604587 32704043
+20t 33060758 32932259 32967298 32915940 32982266 32957210 32909455 32917726
+21t 32979961 32908927 32971084 32991777 32989406 32985795 32955576 32947424
+22t 32717167 32826993 32836793 32763715 32773570 32748766 32776738 32819747
+23t 32457022 32448117 32456944 32476886 32386971 32458927 32368202 32352671
+24t 32502454 32569630 32578180 32554508 32504377 32544950 32565039 32529815
+25t 32612771 32600989 32684362 32711220 32732813 32723849 32685528 32644242
+26t 32603254 32617965 32557801 32546142 32582130 32669091 32533549 32551852
+27t 32651073 32642360 32531396 32674388 32632013 32637551 32565861 32544518
+28t 32676043 32714730 32757096 32690344 32660745 32738640 32668343 32660800
+29t 32601690 32708676 32562470 32520348 32522762 32583942 32454840 32525184
+30t 32533799 32558527 32521022 32527069 32597239 32547069 32475773 32547764
+31t 32944032 32907401 32908859 32881633 32935170 32956904 32939597 32921576
+32t 32498375 32486273 32471413 32580015 32553330 32653525 32489568 32525957
+33t 33079781 33021767 33128934 33137633 33051176 33092797 33036408 33040548
+34t 32435995 32437432 32414387 32531833 32490135 32416607 32458092 32355561
+35t 33008247 32938336 33033466 32994773 32948386 32997810 32888082 32904785
+36t 32555161 32563520 32654261 32589676 32608464 32612639 32578722 32580281
+37t 32864982 32972810 32956890 32918226 32913994 32896801 32889201 32866013
+38t 32762809 32799165 32787119 32722479 32807839 32813090 32728741 32781291
+39t 32315230 32391047 32340942 32359179 32334530 32427413 32327715 32354364
+40t 32311966 32352791 32233404 32294020 32372987 32346243 32278383 32259139
+          24       25       26       27       28       29       30       31
+1t  32600089 32648054 32630403 32700359 32651746 32591772 32642447 32586433
+2t  32575216 32583542 32682280 32611486 32660022 32575151 32661428 32653734
+3t  32608939 32608846 32566236 32567084 32590379 32603244 32554008 32622605
+4t  32632989 32684329 32706883 32591075 32672998 32676169 32688971 32631611
+5t  32579160 32576431 32624555 32606965 32558264 32588803 32577818 32518763
+6t  32683062 32606206 32754607 32617429 32639797 32665963 32640376 32643466
+7t  32405567 32321197 32363656 32394736 32297780 32381798 32382018 32403360
+8t  32383874 32392580 32381081 32372053 32436568 32360585 32316488 32424537
+9t  32968505 32883335 32904591 32896262 32920018 32895535 32886947 33008760
+10t 32708700 32769118 32803947 32709079 32782836 32765888 32734035 32866672
+11t 32657304 32547890 32635770 32665626 32603935 32567628 32620008 32650939
+12t 32650151 32672161 32636221 32652872 32718398 32621907 32702913 32646057
+13t 32634599 32654966 32587874 32656510 32653858 32623856 32645070 32600174
+14t 32637287 32596907 32689438 32636603 32593000 32648381 32704420 32617248
+15t 32891459 32958963 32957184 32938058 32928492 32893689 32962895 32900515
+16t 32496074 32480024 32520208 32555446 32537311 32473349 32501389 32516196
+17t 32367562 32356679 32447296 32495868 32522872 32468980 32385666 32477836
+18t 32545969 32520536 32515211 32588706 32592429 32548159 32562770 32574497
+19t 32630233 32592338 32617181 32623356 32628768 32591359 32585724 32617963
+20t 32933267 32924631 32943011 32954827 32966417 32889220 32940302 32984230
+21t 33009949 32981908 32986896 32945357 32954359 32903872 32914456 33026448
+22t 32779947 32750333 32722677 32714319 32786191 32766680 32805050 32748751
+23t 32392349 32431957 32376097 32339185 32383588 32464609 32523642 32434056
+24t 32547376 32574938 32574055 32551823 32597206 32473574 32537293 32547500
+25t 32634429 32669985 32718018 32611492 32679924 32670038 32682781 32648704
+26t 32585015 32542680 32559481 32578691 32542319 32546241 32596480 32556734
+27t 32644984 32577697 32571925 32589233 32628587 32612145 32590089 32617529
+28t 32656590 32674686 32759563 32693084 32748821 32638683 32689615 32679084
+29t 32453383 32534973 32618664 32451109 32492287 32513080 32507557 32539216
+30t 32497119 32464214 32498903 32552716 32538618 32526523 32579837 32462983
+31t 32843920 32854328 32818102 32877465 32883459 33006350 32860263 32870601
+32t 32525984 32483825 32583993 32516036 32590102 32572684 32469355 32476330
+33t 33085629 33036582 33055930 33011675 33048690 33040533 33034853 33083881
+34t 32454905 32407307 32487151 32392822 32466374 32494141 32404123 32394360
+35t 32989056 32880644 32913200 32934486 33018676 32903572 32931368 32941084
+36t 32532683 32546015 32587462 32501151 32503544 32489992 32599802 32542690
+37t 32867956 32837420 32920606 32939327 32920905 32916525 32850024 32864439
+38t 32825369 32727870 32784069 32822700 32781140 32803721 32736666 32785028
+39t 32424151 32296389 32331076 32354390 32335595 32329524 32428488 32437190
+40t 32380881 32277875 32334440 32347177 32352472 32335731 32316010 32284960
+          32       33       34       35       36       37       38       39
+1t  32663957 32617651 32696257 32634063 32570624 32659924 32650767 32598521
+2t  32586919 32569629 32604449 32636997 32655406 32600757 32598964 32624187
+3t  32562382 32583889 32655873 32527689 32586037 32641804 32639388 32559205
+4t  32667529 32629859 32605909 32666526 32643373 32702128 32579263 32710260
+5t  32683750 32579944 32616019 32577133 32630606 32558033 32560332 32557386
+6t  32598783 32650745 32696216 32663422 32726081 32666318 32581065 32626023
+7t  32414831 32320482 32323648 32347592 32370456 32314310 32387538 32384881
+8t  32443522 32405386 32361430 32414976 32442001 32412349 32379913 32442074
+9t  32900146 32853717 32926371 32861738 32940945 32930662 32948614 32981681
+10t 32713817 32701441 32795908 32671664 32823713 32723218 32804215 32686504
+11t 32658434 32573442 32617796 32741434 32599834 32625409 32573018 32626029
+12t 32690074 32666251 32698147 32684963 32688605 32645248 32641009 32724532
+13t 32658056 32638157 32728589 32614496 32666117 32660115 32674416 32652601
+14t 32656323 32633825 32634725 32666124 32663766 32644297 32646306 32709465
+15t 32929573 32871944 32968042 32900031 32915928 32989394 32931298 32934201
+16t 32628779 32511917 32478215 32551850 32514580 32549572 32561114 32542366
+17t 32385525 32403382 32500823 32507299 32458372 32424238 32439929 32450513
+18t 32608913 32542381 32566071 32581491 32584376 32585166 32541130 32532675
+19t 32619654 32611500 32642578 32657651 32672801 32691761 32615795 32556285
+20t 32969304 32913925 33016308 32927457 32988106 32921427 32900260 32951502
+21t 32939155 32920298 32971691 32934455 32978491 33003621 32908147 32946091
+22t 32786879 32780577 32794457 32750866 32836094 32748274 32735613 32761469
+23t 32347260 32340835 32403870 32358747 32431431 32387974 32347876 32369836
+24t 32559109 32569074 32604624 32555263 32527734 32530356 32521988 32540359
+25t 32590046 32623750 32640856 32709915 32695775 32650439 32657302 32683449
+26t 32617403 32497719 32600414 32546854 32622656 32635245 32598089 32611775
+27t 32620415 32546227 32531342 32590457 32625740 32575601 32565415 32606066
+28t 32624488 32649425 32632802 32746625 32716814 32757696 32739945 32638604
+29t 32504532 32506862 32579647 32515962 32557898 32533731 32452711 32577268
+30t 32471937 32517183 32565877 32393347 32513997 32550579 32441594 32546886
+31t 32893646 32825614 32866434 32907819 32874431 32843975 32875265 32845749
+32t 32466190 32531710 32526064 32514565 32605037 32516137 32489064 32481953
+33t 33112914 33073541 33087297 33132826 33062860 33081377 33035699 33015803
+34t 32428283 32386198 32453004 32363625 32436149 32361385 32384613 32331975
+35t 32951198 32943333 32989736 32918711 32945435 32966471 32879992 32973330
+36t 32540735 32567957 32546061 32475930 32578827 32537947 32587487 32523207
+37t 32887486 32858015 32925743 32928238 32940978 32897558 32852004 32949942
+38t 32768365 32747067 32759193 32792397 32834318 32770089 32774797 32745294
+39t 32398775 32331494 32390895 32348557 32361801 32299275 32318116 32302788
+40t 32311868 32219595 32282905 32324234 32289109 32386832 32319249 32328777
+          40       41       42       43       44       45       46       47
+1t  32657128 32687243 32728288 32757497 32689771 32653833 32705888 32681692
+2t  32670535 32693356 32666981 32619769 32699848 32700911 32569592 32640820
+3t  32579023 32560041 32622080 32634768 32606156 32577193 32585280 32600390
+4t  32603401 32677014 32618816 32748548 32720823 32677312 32732374 32629098
+5t  32547478 32672243 32602130 32635344 32635472 32579034 32639433 32635808
+6t  32565461 32663585 32750636 32677556 32580690 32651627 32591979 32617615
+7t  32284278 32312901 32404733 32505656 32370466 32436392 32342508 32345090
+8t  32373386 32401218 32449894 32513439 32508133 32460098 32409679 32458853
+9t  32920339 33035966 32896495 32981136 32969949 32911755 32910037 32933229
+10t 32759306 32735044 32794723 32804641 32784292 32735392 32776003 32782523
+11t 32616100 32612658 32681362 32653771 32640045 32640531 32734089 32601660
+12t 32700995 32707660 32782416 32734783 32664188 32638714 32706674 32666874
+13t 32682793 32713297 32675010 32658383 32603361 32662219 32689648 32689044
+14t 32637133 32693394 32650891 32616762 32690013 32672260 32690722 32672550
+15t 32827274 32892600 32984862 32921667 33014232 32914107 32964870 32970334
+16t 32480845 32544183 32608642 32564005 32542341 32594069 32510996 32558239
+17t 32410186 32400279 32497389 32558008 32469360 32381739 32492295 32453879
+18t 32531053 32593893 32635591 32642775 32627424 32502396 32593902 32523587
+19t 32578364 32581980 32591302 32629002 32703228 32663559 32614105 32683230
+20t 32962194 32945553 32947742 33012962 32996500 32915175 32955272 32974681
+21t 32923332 33002572 33019248 33085788 32942230 32922003 32962273 33008347
+22t 32763262 32762201 32824966 32769177 32731353 32772280 32792149 32792070
+23t 32368249 32369275 32424861 32436406 32462632 32348085 32394882 32382902
+24t 32585916 32612823 32606291 32566473 32577396 32541503 32523397 32564308
+25t 32651261 32642439 32664036 32801594 32638973 32616040 32714991 32732997
+26t 32560800 32582440 32536938 32594609 32620702 32583427 32561461 32502111
+27t 32563905 32643604 32608572 32654484 32593501 32637793 32607543 32597839
+28t 32761443 32630598 32697542 32753504 32728165 32691212 32682848 32763769
+29t 32512169 32560168 32594837 32591335 32511820 32547540 32490252 32536548
+30t 32554185 32461283 32559003 32562590 32539734 32577733 32544280 32500025
+31t 32846386 32928139 32947886 32976029 32883179 32914823 32916973 32856293
+32t 32544360 32511751 32546148 32644058 32524157 32569415 32516270 32563581
+33t 33082094 33018547 33075999 33073178 33137721 33076811 33105348 33025253
+34t 32328249 32367253 32478129 32528078 32458407 32319063 32461961 32410683
+35t 32925834 32916184 32947087 33021031 32958197 32905703 32967330 32975841
+36t 32583594 32565079 32546527 32625027 32626219 32526051 32522425 32605695
+37t 32924032 32873102 32880844 32875691 32942383 32939410 32857247 32904737
+38t 32760181 32806147 32851473 32800728 32800034 32734407 32763544 32747308
+39t 32381513 32425259 32386734 32375605 32333744 32431376 32372589 32382585
+40t 32304653 32369551 32319795 32378202 32421432 32410763 32288106 32334204
+          48       49       50       51       52       53       54       55
+1t  32685688 32726803 32706385 32645415 32708627 32740063 32734025 32705056
+2t  32608055 32669520 32608117 32683608 32627591 32750379 32677047 32623972
+3t  32605740 32617381 32685499 32571170 32635622 32533635 32628278 32681482
+4t  32661715 32668308 32586181 32696554 32622364 32745468 32686110 32727825
+5t  32553678 32556680 32597350 32584259 32591491 32563051 32581224 32615160
+6t  32640920 32630334 32664423 32614311 32666824 32648687 32731209 32685389
+7t  32376934 32379064 32384707 32327689 32441715 32442307 32468270 32376203
+8t  32410686 32384485 32363074 32380888 32408464 32474205 32338193 32502894
+9t  32989588 32949366 32857476 32960159 32993213 32981710 32999938 32994402
+10t 32711742 32699560 32726845 32784286 32791072 32731070 32768332 32766202
+11t 32657941 32596556 32606735 32653135 32682032 32606966 32698664 32673080
+12t 32731751 32598254 32717689 32645340 32714710 32663694 32739012 32687140
+13t 32705079 32697292 32684692 32656398 32654786 32629743 32662356 32652877
+14t 32696022 32635065 32722732 32721245 32682764 32677841 32666652 32707102
+15t 32906043 32912792 32922088 32952178 32942411 32961249 32962129 32908190
+16t 32567291 32469290 32553389 32622640 32563808 32542590 32615893 32615642
+17t 32453969 32443765 32504060 32463240 32516967 32441567 32572739 32404876
+18t 32615063 32588953 32568768 32577574 32565151 32581923 32611658 32640579
+19t 32674499 32615238 32626719 32713641 32681792 32605279 32702845 32650700
+20t 33000484 32984462 32904979 32990884 32982339 32980035 32954586 32933837
+21t 33001912 32935981 32966591 32984289 32917593 32938216 32941601 32917085
+22t 32746540 32776585 32751654 32769378 32768864 32785457 32788090 32812573
+23t 32403899 32415985 32383244 32412752 32374901 32471530 32391060 32392181
+24t 32617751 32618501 32598441 32602084 32536740 32566310 32594648 32523915
+25t 32671495 32702201 32634765 32650899 32727083 32682810 32676883 32694736
+26t 32640928 32621332 32572163 32602593 32549631 32672164 32610281 32577430
+27t 32602357 32551342 32653178 32660719 32596319 32571849 32576697 32617433
+28t 32763083 32671312 32722608 32748283 32665740 32635735 32759226 32822510
+29t 32554575 32535772 32520953 32585246 32564314 32470395 32660770 32619162
+30t 32610634 32523098 32541673 32490961 32581455 32550447 32534786 32603593
+31t 32920627 32836881 32938386 32900875 32913132 32926754 32963117 32926158
+32t 32525169 32491055 32540283 32478614 32513454 32432338 32541224 32578295
+33t 33089171 33108392 33062517 33141319 33084706 33129251 33117895 33056880
+34t 32374559 32488869 32466390 32491462 32486062 32406754 32463119 32422835
+35t 32987597 33028439 32979305 33035458 33025339 32873812 32964514 32999492
+36t 32569844 32592212 32610275 32668233 32568873 32573504 32596133 32613872
+37t 32930101 32966122 32862770 33004732 32858565 32882425 32887362 32871387
+38t 32830271 32758568 32805895 32721193 32833778 32779934 32832694 32787238
+39t 32376251 32342313 32334754 32412804 32332943 32427388 32386885 32421633
+40t 32301622 32314095 32344249 32404302 32314456 32293417 32282337 32342611
+          56       57       58       59       60       61       62       63
+1t  32693693 32706409 32669209 32690133 32688240 32678770 32686042 32666957
+2t  32682673 32662348 32708081 32714524 32660969 32584552 32626355 32611098
+3t  32605969 32632082 32595011 32615666 32577201 32592451 32552773 32533016
+4t  32711781 32686244 32661439 32677615 32737257 32632355 32576852 32653589
+5t  32644131 32600799 32622204 32564048 32645895 32607971 32650949 32617924
+6t  32656519 32659201 32593415 32635548 32684115 32639504 32680054 32706757
+7t  32322693 32381932 32462954 32399824 32419106 32359519 32363249 32350585
+8t  32482231 32448107 32436468 32495213 32450867 32397870 32400958 32423687
+9t  32890657 32968346 32897459 32958470 32987803 33010740 32884615 32926669
+10t 32792497 32773545 32694727 32805731 32780822 32779558 32703649 32768354
+11t 32641545 32610471 32675628 32603164 32646014 32621505 32650677 32595251
+12t 32684184 32678862 32707622 32749563 32739913 32647393 32685072 32647144
+13t 32676663 32675584 32618663 32678707 32690015 32625882 32641754 32654769
+14t 32725244 32694991 32690859 32714351 32624926 32674915 32630659 32639721
+15t 32947321 32880743 33020012 32985490 32980475 32884573 32956510 32910145
+16t 32564391 32504136 32536253 32564943 32534460 32518203 32503532 32510504
+17t 32428122 32496775 32484959 32535944 32466445 32430496 32412782 32458007
+18t 32588940 32501113 32564732 32567788 32624203 32578522 32567551 32632973
+19t 32623409 32651059 32655016 32702739 32624734 32654109 32590404 32685816
+20t 33009741 32928357 32931232 33007884 33026525 32932626 32923729 32933570
+21t 32982880 33068286 32947411 33045661 33070339 32972579 32947692 33018055
+22t 32829328 32776844 32723785 32851789 32807733 32675788 32789007 32697732
+23t 32414927 32365172 32467128 32448826 32447072 32491957 32361032 32401437
+24t 32602456 32574235 32627808 32612704 32556041 32646969 32518644 32557212
+25t 32754185 32666794 32644462 32706553 32759619 32675054 32635652 32638158
+26t 32508033 32620186 32518709 32599202 32587210 32618812 32562903 32538507
+27t 32690894 32659087 32654024 32619642 32608430 32661949 32625558 32586501
+28t 32687856 32727465 32693516 32780378 32649547 32675777 32672519 32641541
+29t 32601383 32529603 32503902 32699281 32537554 32466566 32569553 32481796
+30t 32540410 32444414 32590282 32574165 32596688 32488353 32519403 32556373
+31t 32957874 32893521 32908071 32867275 33021019 32966386 32875159 32911489
+32t 32480768 32596767 32469193 32500800 32548544 32439046 32512521 32454956
+33t 33067286 33092905 33070230 33101739 33166641 33067231 33052189 33126582
+34t 32472495 32405445 32421558 32493077 32498428 32417767 32347888 32344554
+35t 32964938 33058509 33006360 33030358 32980483 33015150 32984878 32956406
+36t 32615242 32575650 32493495 32661014 32614650 32521929 32553261 32618859
+37t 32928606 32953214 32968011 32938934 33014028 32945156 32894202 32888688
+38t 32729812 32779638 32745865 32791255 32858973 32740554 32795063 32805339
+39t 32360657 32378470 32388230 32395932 32405777 32323912 32342081 32358204
+40t 32325019 32275053 32244441 32354303 32337823 32351809 32366101 32348092
+          64       65       66       67       68       69       70       71
+1t  32738271 32672350 32637507 32693896 32658850 32729388 32645478 32616555
+2t  32594084 32684706 32593204 32632912 32645524 32631833 32648410 32568490
+3t  32626524 32577408 32618953 32574205 32612807 32612561 32522372 32589893
+4t  32660923 32693831 32688267 32636476 32630280 32621151 32681181 32577912
+5t  32587493 32625570 32610742 32543569 32589795 32616752 32589385 32621562
+6t  32615339 32595025 32620445 32570480 32673524 32685163 32664637 32614552
+7t  32401074 32348091 32301077 32358616 32274537 32383919 32300945 32323019
+8t  32429202 32438452 32450318 32414781 32406790 32507115 32409368 32405075
+9t  32968561 32871536 32956725 32916630 32918209 32892478 32897097 32873623
+10t 32763845 32764743 32742571 32744823 32756485 32755330 32788884 32720709
+11t 32664170 32604423 32611173 32683798 32705655 32636379 32578522 32640828
+12t 32629433 32719649 32666852 32655362 32643946 32683507 32721022 32696941
+13t 32617656 32682318 32789046 32719938 32699350 32651890 32628802 32589308
+14t 32633377 32610966 32709658 32581758 32581778 32669669 32726956 32626728
+15t 32857980 33012288 32862951 32965584 32877969 32918212 32959990 32822508
+16t 32536877 32463284 32544146 32546044 32586338 32533881 32521994 32557652
+17t 32468747 32393964 32390441 32426583 32477888 32458106 32460162 32374253
+18t 32613220 32550844 32520350 32577659 32548399 32577823 32587017 32518836
+19t 32640497 32635242 32670390 32670043 32587843 32670054 32587503 32666362
+20t 32964840 32945988 32949480 32964336 32918915 32931897 33005844 32919322
+21t 32973039 33036070 32914316 32907151 32932650 33015850 32998808 32966078
+22t 32755620 32716841 32770984 32739550 32718974 32790390 32760882 32761377
+23t 32368800 32385646 32336390 32381281 32448850 32409730 32422497 32342167
+24t 32551960 32564926 32616166 32546797 32512106 32580051 32579159 32498139
+25t 32623628 32748335 32630184 32617363 32659517 32635325 32635450 32621535
+26t 32575794 32553575 32569296 32555563 32519979 32592621 32550276 32554593
+27t 32596402 32582658 32563227 32605145 32623319 32612838 32562369 32572722
+28t 32671963 32761618 32682312 32662189 32764751 32698695 32717076 32643421
+29t 32458982 32526138 32527758 32483049 32491461 32507301 32474136 32542277
+30t 32583694 32577397 32510885 32492068 32508579 32486090 32509017 32553343
+31t 32862519 32899412 32877786 32946320 32851629 32885532 32856203 32904128
+32t 32494836 32412030 32532700 32465762 32489225 32485166 32568863 32456881
+33t 33044277 33097703 33009506 33069814 33022551 33053780 33086512 33037651
+34t 32372314 32420456 32370385 32348790 32402524 32366918 32436271 32415921
+35t 32930341 32995271 32932744 32985917 32940873 32963216 32953699 33032261
+36t 32622142 32526650 32577968 32620846 32623754 32663610 32612579 32616148
+37t 32880459 32854818 32827362 32981370 32924613 32956272 32934672 32913825
+38t 32728080 32767031 32791474 32723216 32742757 32779026 32808119 32718814
+39t 32371976 32340019 32411555 32333002 32392346 32339589 32293100 32310749
+40t 32359973 32345361 32289919 32406139 32282919 32286837 32335477 32251401
+          72       73       74       75       76       77       78       79
+1t  32784499 32649013 32643538 32741629 32680568 32667721 32698748 32684774
+2t  32704462 32568119 32655484 32637833 32568702 32594597 32585832 32596505
+3t  32557651 32566953 32591951 32648202 32652226 32557763 32577020 32559570
+4t  32656161 32669157 32598208 32702674 32602388 32631400 32695813 32656320
+5t  32579092 32570388 32622038 32618583 32574182 32614483 32527638 32532097
+6t  32603569 32595763 32634811 32709813 32669715 32603715 32729102 32671338
+7t  32337046 32332727 32343802 32485439 32320669 32417906 32326775 32354320
+8t  32354739 32438629 32384693 32412652 32486017 32374806 32398471 32394497
+9t  32973321 33021241 32984099 32987944 32894510 32919352 32859360 32952543
+10t 32733469 32675030 32756627 32807437 32783926 32716802 32747582 32748646
+11t 32692904 32560115 32614413 32628597 32603365 32605872 32610368 32617767
+12t 32643388 32675142 32707039 32782884 32671819 32641067 32614043 32637398
+13t 32702118 32696854 32670867 32694886 32617006 32618791 32645698 32654931
+14t 32625494 32617898 32612816 32784342 32725042 32632718 32712238 32656258
+15t 32931649 32888396 33014239 32960272 32915768 32879649 32971893 32902278
+16t 32489942 32510845 32508223 32568817 32452312 32496270 32521146 32534309
+17t 32345145 32475669 32513045 32529052 32477481 32413498 32457206 32486416
+18t 32562623 32523509 32558802 32574927 32465589 32546419 32593684 32523791
+19t 32660436 32563400 32673237 32609341 32620121 32628207 32626256 32634944
+20t 32902427 32989446 32937593 33025336 32966138 32914133 32932978 32954496
+21t 32913978 32948914 32963954 32960082 32971935 32930607 32950126 33040438
+22t 32691653 32725403 32806070 32843144 32738149 32686758 32824189 32742232
+23t 32367287 32420329 32416423 32413850 32414087 32390099 32339136 32402031
+24t 32521126 32545438 32534672 32556208 32463419 32584369 32546261 32553367
+25t 32624866 32729892 32599091 32712814 32624316 32643399 32612079 32604266
+26t 32548764 32559973 32621472 32572966 32520910 32527548 32520778 32507346
+27t 32568593 32670305 32544676 32642478 32545961 32589550 32597412 32582420
+28t 32623833 32684972 32716781 32781605 32713981 32682497 32691284 32704689
+29t 32506629 32532224 32535617 32594871 32491167 32430094 32525307 32475368
+30t 32469470 32527925 32525682 32527570 32516712 32502658 32494803 32480722
+31t 32831218 32894244 32902099 32853936 32874710 32873416 32908992 32856632
+32t 32454878 32529855 32536500 32531174 32498531 32484544 32483614 32506314
+33t 33024753 33047489 33083797 33049339 33059676 33059794 33012322 33047773
+34t 32494621 32465378 32349877 32431117 32412573 32442075 32513125 32488517
+35t 32873607 32945773 32879854 32930883 32937153 32946917 32906653 32904772
+36t 32575103 32577410 32537860 32585406 32590993 32610616 32556259 32601194
+37t 32891512 32936721 32871796 32885796 32831356 32890318 32915539 32919866
+38t 32746279 32726635 32764251 32899545 32724057 32750188 32747979 32792373
+39t 32297319 32327422 32301780 32371404 32317314 32328069 32317633 32357364
+40t 32397588 32255992 32312258 32334455 32343851 32283146 32269717 32318976
+          80       81       82       83       84       85       86       87
+1t  32624377 32662491 32654136 32699982 32736062 32758716 32747784 32654145
+2t  32615554 32696285 32640265 32666490 32621327 32671903 32628521 32594105
+3t  32618041 32626163 32569283 32574880 32578238 32627138 32569504 32587817
+4t  32716159 32693758 32738380 32751754 32701769 32634701 32618169 32673672
+5t  32508427 32675585 32597785 32612678 32553804 32650583 32613977 32671218
+6t  32635415 32637278 32627512 32690145 32644520 32635529 32615636 32681199
+7t  32361748 32384903 32432258 32308468 32404436 32422610 32405171 32290887
+8t  32424851 32362297 32429524 32485234 32387208 32372276 32483207 32397020
+9t  32949785 32946098 32981828 32944466 32947729 32969098 32928042 32959374
+10t 32790554 32764432 32739254 32786531 32725521 32790747 32777123 32771240
+11t 32715603 32647609 32662896 32661397 32731954 32662773 32628395 32693094
+12t 32673086 32660374 32709338 32770351 32658601 32687742 32722268 32723585
+13t 32725103 32719898 32605126 32630229 32679642 32592351 32691228 32626239
+14t 32675895 32713115 32725471 32654488 32654056 32725635 32678760 32704598
+15t 32904387 32936988 33018060 32933774 32934400 32956199 33031182 32962303
+16t 32485787 32666023 32653150 32587581 32583297 32573080 32567578 32552098
+17t 32413916 32481821 32465005 32469010 32379263 32388726 32476758 32483240
+18t 32543958 32512312 32601434 32584448 32655664 32581865 32572744 32564056
+19t 32639580 32644782 32648198 32679087 32677731 32611022 32627891 32644560
+20t 32933013 32935470 32916659 33004327 32911003 32946215 32936300 32938992
+21t 33052811 32999343 32966569 32957098 32984072 33005100 32986368 32957119
+22t 32747577 32744324 32817105 32801455 32761618 32806996 32822985 32748736
+23t 32363900 32394361 32420169 32424536 32345296 32459934 32395856 32545093
+24t 32632413 32574891 32575943 32618153 32656154 32672425 32608604 32649538
+25t 32620017 32714026 32735183 32680647 32683037 32633792 32652201 32716609
+26t 32604630 32619564 32583951 32563540 32607253 32568598 32586961 32603735
+27t 32623690 32648415 32629391 32635127 32573181 32613403 32594278 32601759
+28t 32691484 32720710 32664032 32838837 32819844 32697143 32678204 32774596
+29t 32512163 32514626 32619069 32561448 32491063 32572853 32481429 32532088
+30t 32463424 32519822 32500118 32588043 32531308 32554433 32533705 32478216
+31t 32933309 32860300 32928166 32934940 32925325 32966543 32895231 32876194
+32t 32515868 32574102 32618829 32558934 32503580 32632732 32516357 32524023
+33t 33116849 33065399 33097151 33012551 33054174 33075903 33076356 33056894
+34t 32448042 32408561 32347275 32493357 32356246 32519470 32345107 32496923
+35t 33025117 32959081 32935689 33034009 33009584 33076972 33008255 32980795
+36t 32619917 32626035 32551762 32504264 32643120 32644036 32557347 32546840
+37t 32935120 32940066 32901702 32968545 32998546 32892693 32912061 32940907
+38t 32785238 32768162 32810292 32809791 32823442 32823990 32710365 32824493
+39t 32410442 32428370 32404854 32398949 32391728 32391829 32324047 32435872
+40t 32295768 32328213 32341157 32415277 32323186 32336105 32219284 32268125
+          88       89       90       91       92       93       94       95
+1t  32652882 32673389 32707217 32708012 32636175 32669803 32702175 32773754
+2t  32714573 32674678 32661157 32697837 32693390 32692184 32711564 32600160
+3t  32574724 32663939 32615799 32626948 32596314 32639350 32673528 32665504
+4t  32718871 32686205 32670574 32698236 32723993 32650016 32742192 32666484
+5t  32589328 32623577 32604284 32623261 32664980 32550834 32649114 32639780
+6t  32659295 32630038 32663762 32670586 32600771 32631230 32622922 32640493
+7t  32440682 32426497 32330379 32388342 32379109 32392501 32400679 32412517
+8t  32439681 32480883 32479484 32442294 32495751 32422654 32439374 32374612
+9t  32911333 32967941 32977769 32981944 32956562 32916943 33019082 32974241
+10t 32753186 32778673 32860839 32789507 32777629 32814488 32828635 32838856
+11t 32670818 32771459 32693357 32658629 32629887 32596148 32608029 32605778
+12t 32749831 32701930 32701878 32683777 32695430 32625808 32628002 32700828
+13t 32740016 32763046 32686828 32680671 32716644 32644620 32641105 32663184
+14t 32736337 32815953 32694977 32723937 32794595 32664721 32673187 32666951
+15t 32988993 32938890 32913050 32942254 33004938 33009225 32987201 32989844
+16t 32558163 32557555 32587016 32528481 32626451 32491298 32583242 32550809
+17t 32466795 32639896 32449015 32452938 32475485 32453592 32500692 32430803
+18t 32586176 32573108 32560109 32619013 32620416 32623644 32627988 32643752
+19t 32685554 32650173 32638032 32648769 32637176 32648688 32707231 32631273
+20t 32971431 33019167 32997827 32946114 32989425 33013598 32938856 32987805
+21t 33050297 32979085 32968008 32944361 32963282 33008980 32968096 32997635
+22t 32834229 32811431 32788234 32761900 32805929 32752902 32738619 32764497
+23t 32365474 32378012 32397223 32400468 32507224 32459581 32343758 32427545
+24t 32632519 32679709 32566833 32581040 32581400 32496434 32608248 32533314
+25t 32671939 32663138 32694982 32708310 32747683 32695653 32666810 32732234
+26t 32568253 32668761 32643663 32644602 32656076 32555890 32628338 32579940
+27t 32635327 32696839 32579218 32636343 32591910 32652714 32559082 32601615
+28t 32715124 32676396 32679814 32719056 32749475 32723140 32731820 32777625
+29t 32652372 32634274 32586517 32569686 32509259 32506028 32443326 32518265
+30t 32583662 32611749 32532864 32540760 32539295 32553861 32537785 32554273
+31t 32917257 32968184 32995878 32864367 32987883 32903237 32834383 32924770
+32t 32592587 32591112 32490239 32603823 32570164 32477612 32570907 32521447
+33t 33124895 33081990 33074846 33076050 33083549 33080351 33043742 33064320
+34t 32478912 32478125 32481966 32504025 32569109 32347288 32432509 32372620
+35t 32882387 33026019 32951896 33075353 32969998 32918577 32972281 32951802
+36t 32627537 32628023 32553550 32503628 32643177 32550555 32550170 32562233
+37t 33018118 32911370 32958640 32903127 32940188 32974032 32940890 32940968
+38t 32793871 32902349 32797744 32813297 32796261 32758486 32790666 32800308
+39t 32359393 32455335 32362539 32392905 32351753 32369635 32391830 32394689
+40t 32338501 32327187 32284629 32342021 32267201 32269963 32271244 32412589
+          96       97       98       99      100      101      102      103
+1t  32612354 32716520 32645479 32690132 32649171 32631474 32813297 32691446
+2t  32677465 32654415 32684417 32653433 32694039 32716702 32682764 32614255
+3t  32639362 32588525 32626822 32594218 32636031 32691324 32583200 32544219
+4t  32686683 32657396 32658741 32663223 32699770 32638446 32724716 32787758
+5t  32695289 32613840 32641276 32616529 32694359 32641307 32598335 32637229
+6t  32626595 32632545 32626656 32625790 32678846 32649193 32720188 32631032
+7t  32347080 32342325 32295159 32343613 32466814 32372777 32416510 32326133
+8t  32423103 32453204 32424554 32491516 32471937 32502285 32429879 32438561
+9t  32904282 33028021 32929372 32955567 32940419 32914445 32987207 32874811
+10t 32805687 32760197 32747239 32826645 32809695 32673427 32721681 32862441
+11t 32734744 32705723 32645304 32634253 32589368 32741842 32695358 32615715
+12t 32713019 32698021 32717816 32716844 32757828 32739944 32699044 32688109
+13t 32629261 32659660 32686935 32703786 32693156 32650004 32793843 32634625
+14t 32722151 32714952 32709571 32641125 32690639 32686062 32657893 32703150
+15t 32958931 32971502 32935255 32977860 32913952 32898298 33028706 32961153
+16t 32552518 32575296 32616783 32648394 32595038 32587333 32571604 32542640
+17t 32451798 32514352 32435059 32487746 32493441 32486054 32499104 32449246
+18t 32642415 32603686 32582911 32622492 32615723 32572150 32549515 32585439
+19t 32662464 32639607 32655616 32704448 32632903 32611958 32679056 32611734
+20t 32900854 32963745 32963459 32959072 32921209 32924696 33002747 32984921
+21t 32947589 33075314 33011039 33036398 32972289 32932418 32966673 32968527
+22t 32708597 32748620 32844608 32792709 32807473 32729219 32829313 32818029
+23t 32410777 32410767 32377827 32425736 32400991 32366882 32424634 32410228
+24t 32589422 32600372 32589454 32616339 32608406 32549758 32563396 32615805
+25t 32653342 32636826 32676203 32719099 32559188 32636822 32716478 32692572
+26t 32519554 32596138 32628877 32576385 32624836 32541922 32564285 32689378
+27t 32643439 32687847 32637839 32584320 32647550 32598683 32604504 32616813
+28t 32664483 32791646 32845716 32703292 32621062 32720895 32703665 32674617
+29t 32582550 32625797 32618656 32520620 32553665 32563516 32568374 32558013
+30t 32557356 32490296 32551284 32569686 32461484 32492558 32564654 32542482
+31t 32879717 32890731 32876537 32924426 32890324 32920015 32922491 32930361
+32t 32531031 32626713 32568352 32603194 32474949 32639819 32548055 32555908
+33t 33053961 33121532 33085188 33088949 33068990 33028883 33097283 33076626
+34t 32424256 32404519 32463506 32482796 32479347 32393050 32466587 32468422
+35t 32943675 33003103 32956914 33010879 32998568 33054583 32958040 33077712
+36t 32571555 32634796 32592098 32581327 32550580 32617241 32621495 32533964
+37t 32904679 32954567 32884375 32965688 32931758 33028796 32966174 32868152
+38t 32731278 32754822 32776840 32741810 32734723 32779038 32739836 32779838
+39t 32394545 32391220 32414864 32392593 32387338 32430389 32437814 32408398
+40t 32242927 32343219 32316373 32293581 32334162 32424241 32298041 32306087
+         104      105      106      107      108      109      110      111
+1t  32701088 32676318 32732002 32643342 32681660 32724731 32735992 32749073
+2t  32650576 32685685 32661524 32613465 32681540 32654961 32646917 32652026
+3t  32599896 32602012 32602219 32650478 32658968 32589683 32587592 32626947
+4t  32676946 32633836 32682745 32589354 32725300 32743488 32625123 32650612
+5t  32569395 32574662 32626524 32613995 32619038 32612181 32606048 32554974
+6t  32665493 32611486 32651928 32672610 32637399 32673823 32668453 32712453
+7t  32378386 32350651 32294317 32319979 32431588 32423750 32486671 32382887
+8t  32426731 32416821 32431162 32389350 32403340 32515541 32528615 32428769
+9t  32902875 32945618 32969504 32990334 32949640 32971800 32976286 32995829
+10t 32787920 32781512 32781284 32678273 32822488 32818537 32708911 32763695
+11t 32637630 32701269 32690324 32697535 32642297 32694704 32644408 32680286
+12t 32721623 32710794 32731205 32671153 32671882 32761581 32719255 32702340
+13t 32603912 32688011 32713920 32658452 32646925 32758375 32672202 32749164
+14t 32684500 32757908 32612684 32729243 32653176 32687926 32668698 32696035
+15t 32932502 32928137 32898016 32934514 32915203 32982226 32951715 32916127
+16t 32575437 32522192 32504581 32533089 32560083 32574718 32588342 32601034
+17t 32393583 32515696 32468530 32402942 32439563 32495087 32462381 32540428
+18t 32551643 32692485 32634640 32611260 32610133 32592731 32576207 32641240
+19t 32697851 32674101 32657409 32612095 32692575 32644597 32734503 32726353
+20t 33015469 32969296 32988843 32917489 32997182 33006980 32946066 32990288
+21t 32975358 33001524 32944663 33039198 32912610 32974760 32955524 32964080
+22t 32787885 32765890 32784016 32745780 32812514 32810876 32800387 32833814
+23t 32515088 32305395 32335962 32362572 32425082 32542976 32456105 32540443
+24t 32517042 32549070 32585177 32537525 32537948 32597318 32633501 32516981
+25t 32653159 32692559 32633207 32617803 32670128 32799988 32685584 32725072
+26t 32640489 32649683 32606588 32642172 32560326 32623329 32568518 32534677
+27t 32698598 32654518 32664506 32678825 32561019 32667712 32632855 32661944
+28t 32728876 32708029 32702614 32761808 32640858 32789887 32789736 32765806
+29t 32591710 32551702 32608470 32515202 32513304 32560583 32561329 32605376
+30t 32552528 32614096 32489056 32504435 32440015 32642515 32546114 32560608
+31t 32885056 32849047 32900920 32946224 32864871 32983234 32944756 32884260
+32t 32559610 32616575 32539973 32539228 32474798 32448652 32583362 32588488
+33t 33053439 33128746 33079394 33059936 33094993 33095422 33089827 33104502
+34t 32462888 32468144 32473491 32423171 32426225 32433041 32364632 32489018
+35t 32964983 33020616 32937970 32955322 33008264 33046213 32965805 33050395
+36t 32620841 32600710 32646529 32532285 32529665 32670670 32576506 32635450
+37t 32868107 32932645 32872813 32945117 33005289 32901105 32836027 33017002
+38t 32694534 32759652 32799232 32768520 32717435 32790828 32793813 32790614
+39t 32435927 32374267 32341469 32336245 32353649 32368882 32383028 32421345
+40t 32340893 32402691 32278908 32337693 32297524 32307716 32278316 32414395
+         112      113      114      115      116      117      118      119
+1t  32741048 32706216 32699385 32699035 32657340 32645534 32606256 32738177
+2t  32620577 32703946 32652802 32680605 32638346 32720123 32633922 32664670
+3t  32633298 32616338 32686435 32611055 32540905 32589751 32561113 32615389
+4t  32696484 32628388 32661115 32675139 32625530 32590221 32668154 32743396
+5t  32580458 32611928 32626863 32584623 32599016 32625840 32572200 32607052
+6t  32691397 32683871 32653103 32610102 32670509 32625745 32597854 32685680
+7t  32388028 32436186 32337482 32324981 32334755 32282081 32355501 32479344
+8t  32344784 32437509 32344358 32365510 32457245 32496456 32399521 32386874
+9t  32912311 32875902 32975337 32926261 32920687 32988434 32908641 32973932
+10t 32750546 32866724 32706868 32767666 32807752 32730624 32736798 32798542
+11t 32657202 32640683 32651414 32683500 32753397 32644572 32591702 32693401
+12t 32648957 32726561 32619647 32652660 32666087 32687901 32623360 32683898
+13t 32674774 32701481 32719693 32656010 32631837 32625287 32688137 32620676
+14t 32714414 32673621 32604031 32653139 32674399 32637414 32680172 32623602
+15t 32921744 33042491 32856141 32926050 32893923 32965443 32884231 32976484
+16t 32521479 32625205 32493445 32513814 32533634 32493217 32507404 32580607
+17t 32390539 32442459 32448310 32518919 32398726 32411085 32455219 32467686
+18t 32580401 32682021 32567442 32437382 32583634 32567260 32549684 32581310
+19t 32615761 32648977 32639445 32635192 32593507 32650860 32622510 32697941
+20t 32914941 33011988 32939396 33019767 32964696 32987089 32951619 32920286
+21t 32990382 33010874 32993644 32969597 32880807 33005248 32974723 32943719
+22t 32751649 32800855 32754374 32721338 32737573 32748014 32740703 32805459
+23t 32377816 32395904 32360016 32354880 32371698 32468877 32394248 32381941
+24t 32534382 32547531 32602110 32485010 32556850 32576920 32568085 32577712
+25t 32703194 32639101 32596235 32735666 32654698 32682532 32655799 32721336
+26t 32528731 32678263 32540955 32580285 32538487 32583595 32499200 32572917
+27t 32673921 32680886 32525214 32575058 32600383 32664920 32614446 32621929
+28t 32707091 32752849 32662460 32633797 32618547 32686072 32644326 32834971
+29t 32544002 32617897 32540411 32558100 32538263 32589943 32505072 32606854
+30t 32593248 32546385 32646874 32535785 32518984 32589978 32537115 32566877
+31t 32818212 32914476 32961249 32879259 32841419 32859703 32926815 32919424
+32t 32494788 32523363 32557058 32528051 32478039 32554856 32469900 32578363
+33t 33015427 33038260 33053712 33103884 33001807 33016371 33037435 33055800
+34t 32394360 32481607 32395033 32382901 32476507 32437267 32343255 32442861
+35t 32975761 32927848 32937232 32966045 32969523 32960221 33019139 32992447
+36t 32587910 32567406 32619263 32514047 32558691 32576380 32534166 32572327
+37t 32926606 32952160 32917556 32979773 32846999 32940092 32865209 32928852
+38t 32807098 32822718 32798666 32723823 32736332 32810474 32739556 32776056
+39t 32401635 32412468 32368968 32317594 32294660 32323508 32373408 32374813
+40t 32286171 32371146 32316782 32295229 32316828 32310984 32335274 32265517
+         120      121      122      123      124      125      126      127
+1t  32746973 32634670 32671309 32614992 32645599 32790023 32662285 32701359
+2t  32703524 32571108 32638442 32662783 32630217 32739313 32651794 32639175
+3t  32621780 32576828 32593311 32557442 32636327 32596611 32603091 32626426
+4t  32614015 32650968 32667320 32797802 32725272 32697124 32667349 32601431
+5t  32585575 32597829 32611082 32626925 32633946 32671711 32663203 32579923
+6t  32576641 32559471 32679036 32671312 32693403 32677116 32733760 32672261
+7t  32333084 32375919 32339451 32430805 32432785 32431464 32400142 32440287
+8t  32466297 32412805 32442325 32428640 32422109 32458521 32413026 32449728
+9t  32961761 32885263 32965060 32984794 32991781 32971581 32934458 32986988
+10t 32831906 32765708 32848076 32795207 32707280 32747847 32812463 32744459
+11t 32641446 32698351 32652456 32702392 32674729 32581443 32659273 32717518
+12t 32628502 32754429 32753818 32714366 32623392 32744891 32730627 32736380
+13t 32701613 32677523 32695051 32643772 32650955 32684856 32695513 32749419
+14t 32642828 32692182 32658815 32724517 32725324 32734523 32690433 32713999
+15t 32964039 32925254 32943578 32994243 32993540 32999257 32966375 32971702
+16t 32550050 32517110 32598523 32520647 32585914 32620673 32565209 32570410
+17t 32453118 32503873 32489061 32494810 32474770 32451110 32517689 32550279
+18t 32547931 32667108 32508565 32559965 32578329 32557322 32630992 32634817
+19t 32617471 32618247 32631871 32690322 32608887 32625421 32630991 32622130
+20t 32911718 32990367 32950210 32997047 32982169 32932933 33000527 33053929
+21t 32943854 32993780 33066992 32934461 32963142 32976756 32971204 33036689
+22t 32737071 32812316 32786563 32823007 32824904 32760054 32735076 32895465
+23t 32371221 32367205 32442452 32459493 32409211 32459708 32466758 32404685
+24t 32610629 32565795 32667085 32561390 32533759 32668742 32539676 32587873
+25t 32666317 32693711 32716933 32714761 32664908 32691817 32737827 32710746
+26t 32542599 32613297 32598561 32588602 32578388 32619292 32651239 32620099
+27t 32718887 32586551 32604447 32623472 32678192 32561390 32594738 32631707
+28t 32742211 32778147 32723339 32726410 32743006 32751382 32782032 32674073
+29t 32504831 32501697 32528742 32579197 32572821 32539820 32563050 32574585
+30t 32566886 32510399 32580422 32579158 32629267 32565764 32523575 32524826
+31t 32896354 32943060 32932406 32933146 32951965 32910711 32870445 32934768
+32t 32468447 32589194 32525390 32587001 32567128 32573984 32505705 32544280
+33t 33088557 33099540 33071551 33164085 33100778 33084747 33059108 33129259
+34t 32435171 32408270 32345452 32526964 32554592 32581531 32391436 32409890
+35t 32944233 32993148 32952478 32996694 33007549 32982014 32963365 32953604
+36t 32548940 32553525 32584914 32573504 32593100 32645243 32589186 32659037
+37t 32845487 32962239 32992316 32955359 32943733 32880156 32960363 32882511
+38t 32749702 32739952 32744359 32826312 32848190 32787413 32836127 32832715
+39t 32339894 32391426 32399162 32389279 32410708 32403788 32403119 32395497
+40t 32277221 32363231 32291152 32348273 32309884 32340704 32361263 32330160
+         128      129      130      131      132      133      134      135
+1t  32747904 32705359 32723172 32611283 32639523 32673013 32666847 32681745
+2t  32646530 32624332 32620776 32603562 32676924 32676747 32740796 32707166
+3t  32534921 32634881 32609641 32625727 32608448 32625618 32577528 32577471
+4t  32755138 32612362 32739628 32695312 32642683 32613634 32765416 32716005
+5t  32704094 32596732 32589397 32582053 32625185 32609097 32655930 32614202
+6t  32661561 32579596 32614778 32587905 32614081 32702992 32643924 32647759
+7t  32346876 32354551 32437447 32485336 32310018 32402888 32445491 32416930
+8t  32463592 32423594 32389312 32429651 32468447 32428374 32449996 32417924
+9t  32883437 32974135 32889926 32908140 32974641 32954607 33000120 32965765
+10t 32791638 32807952 32814799 32839514 32766481 32719123 32854656 32771611
+11t 32668894 32714895 32668832 32669448 32717714 32661013 32614929 32670355
+12t 32705290 32712428 32634019 32706847 32656178 32667970 32688630 32706562
+13t 32646786 32701647 32649787 32677455 32621409 32731768 32692193 32674735
+14t 32774155 32700728 32745688 32650389 32677270 32651355 32704834 32764648
+15t 32929696 32951607 32889103 32990832 32926065 32977252 32972651 32964211
+16t 32479510 32565960 32553616 32534269 32512645 32574786 32565194 32584915
+17t 32442948 32424408 32405260 32531306 32404241 32452374 32440487 32423426
+18t 32592893 32601051 32582758 32560449 32573972 32548034 32575083 32657264
+19t 32634798 32638438 32637703 32564535 32631157 32642146 32686136 32695736
+20t 32987730 33000306 32973372 33042892 32953220 33030521 32991118 33019088
+21t 32992337 32978555 32939390 32896102 32993036 32925020 33066538 32953980
+22t 32809734 32832445 32734559 32811901 32741508 32835448 32920135 32822077
+23t 32422075 32420069 32441213 32415289 32413413 32387216 32461996 32535550
+24t 32544877 32532256 32574192 32610850 32598195 32606325 32561697 32523041
+25t 32722334 32687755 32680923 32734881 32615167 32725889 32767601 32599488
+26t 32606717 32556889 32640184 32573306 32674971 32598442 32646581 32656463
+27t 32681953 32616564 32634869 32630986 32620340 32598033 32631064 32643046
+28t 32760672 32735074 32789247 32727689 32757228 32708820 32760976 32754863
+29t 32590708 32534419 32492204 32478813 32516617 32490046 32552017 32574837
+30t 32652808 32533003 32525629 32643149 32548914 32522944 32527193 32501913
+31t 32906950 32842689 32870972 32925736 32941505 32855774 32963738 32895324
+32t 32586234 32489563 32525581 32559503 32469251 32525841 32519006 32450883
+33t 33081471 33128744 33064204 33071293 33090866 33118881 33095950 33026817
+34t 32477576 32444266 32453420 32403854 32375306 32391564 32484350 32438232
+35t 33030666 32974717 32985211 32915253 33013541 32969241 33008981 32950511
+36t 32589507 32572514 32553210 32644383 32586197 32606091 32604124 32607590
+37t 32895680 32855817 32944657 32900903 32903166 32982702 32997599 32935028
+38t 32807997 32707753 32758673 32822414 32806684 32786129 32817571 32756052
+39t 32332102 32320753 32428552 32404926 32428807 32346393 32495625 32393969
+40t 32242924 32311684 32277193 32259526 32267622 32399053 32372238 32373429
+         136      137      138      139      140      141      142      143
+1t  32720214 32711103 32757410 32784630 32665271 32715187 32751620 32672897
+2t  32627429 32631695 32629329 32623619 32718286 32660335 32635394 32637967
+3t  32636429 32643411 32568591 32620887 32548111 32613214 32634021 32537645
+4t  32671721 32702257 32717162 32668441 32680073 32640245 32696936 32652470
+5t  32735249 32642677 32708085 32649324 32582244 32575324 32710739 32674022
+6t  32583953 32640554 32730192 32581469 32702231 32795151 32724365 32634868
+7t  32388972 32331760 32386381 32344865 32369475 32367052 32367173 32329239
+8t  32408639 32436473 32416464 32371773 32495892 32431365 32518637 32407809
+9t  32932466 33011350 32929505 32986741 33022833 33015308 32973466 32985654
+10t 32833864 32740278 32804293 32757594 32919756 32783236 32818382 32835353
+11t 32728224 32724962 32660685 32683582 32694406 32716145 32713987 32746174
+12t 32718777 32663064 32699468 32620965 32689709 32706602 32807561 32779808
+13t 32666305 32648685 32720163 32696882 32728020 32676729 32741663 32697740
+14t 32651016 32687726 32627646 32667697 32756582 32677220 32723729 32680387
+15t 32979562 33004285 33009610 32984657 32896268 32945178 33113583 32974347
+16t 32511768 32573695 32564639 32511561 32588991 32524981 32612803 32688338
+17t 32453543 32527187 32484179 32475956 32476790 32525697 32567052 32391011
+18t 32573261 32533474 32510893 32670404 32595162 32673217 32603896 32578812
+19t 32653785 32609747 32774387 32640341 32600406 32697416 32626743 32684008
+20t 32992309 33012546 32967582 32922984 32947820 33022554 33043039 32910740
+21t 33006866 32958094 32957151 32982685 32955374 33025159 32964086 33016882
+22t 32794440 32693072 32842585 32772408 32752150 32843858 32779752 32820421
+23t 32457062 32357447 32497989 32486023 32427835 32452401 32388785 32403922
+24t 32507380 32536973 32617553 32558200 32586091 32597269 32585763 32568938
+25t 32667063 32705228 32712069 32666949 32638813 32694358 32773235 32670913
+26t 32585328 32604089 32534794 32566455 32707537 32555226 32618893 32605657
+27t 32632722 32581267 32661389 32634320 32654546 32648018 32675375 32581689
+28t 32740602 32696002 32735036 32830264 32709318 32725754 32771079 32750937
+29t 32616791 32547958 32569610 32534791 32591185 32565104 32564117 32564437
+30t 32523672 32484658 32591437 32550563 32555277 32528682 32641071 32574621
+31t 32901215 32902900 32910161 32909369 32932959 32906125 32954757 32927080
+32t 32513395 32494155 32523921 32513924 32569834 32544750 32643139 32545315
+33t 33128531 33130725 33140139 33067092 33110460 33072716 33107336 33058665
+34t 32419295 32424666 32362440 32432088 32446187 32491944 32473517 32449873
+35t 32946650 32919912 33046129 32997447 33001561 32958648 32954335 32973553
+36t 32568282 32586040 32593682 32638359 32642435 32579695 32550446 32570616
+37t 32917049 32945584 32967604 32996830 32885740 32939827 32913309 32843963
+38t 32730435 32797573 32790614 32711819 32856538 32823624 32840027 32772841
+39t 32355611 32371353 32457538 32325290 32360030 32440166 32428577 32346951
+40t 32345945 32362646 32409300 32327171 32325837 32305890 32381973 32308569
+         144      145      146      147      148      149      150      151
+1t  32691232 32675487 32708048 32706115 32673849 32681478 32635596 32683410
+2t  32635912 32639316 32683185 32643684 32630185 32644347 32761844 32652289
+3t  32615042 32662804 32592844 32589542 32576631 32600894 32603028 32565994
+4t  32705236 32720277 32690038 32776776 32678291 32619768 32725937 32693813
+5t  32516370 32662137 32603683 32648638 32651202 32647971 32804906 32603054
+6t  32718596 32660136 32631533 32669029 32725960 32701188 32694254 32656245
+7t  32408048 32379969 32357415 32363292 32347082 32357616 32415471 32297721
+8t  32349171 32492060 32363736 32527939 32398937 32440041 32538439 32427219
+9t  33024040 32916707 32956426 32965024 32973164 32961586 33076774 32882552
+10t 32770580 32741903 32856266 32827785 32753921 32786182 32761436 32801254
+11t 32683596 32621846 32625498 32622550 32827153 32709500 32612588 32561945
+12t 32709793 32665540 32666480 32680521 32688591 32743509 32704599 32730732
+13t 32688330 32643820 32687597 32719884 32741783 32696488 32644722 32697901
+14t 32707834 32695787 32704422 32729918 32612887 32721928 32650404 32697251
+15t 32996249 32959536 32886343 33000820 32929856 32933485 32915755 32980322
+16t 32498794 32592499 32579268 32561918 32587535 32553375 32543731 32508571
+17t 32417720 32427236 32512741 32520684 32434414 32430421 32465395 32569758
+18t 32576040 32665573 32610261 32522638 32548546 32585129 32615502 32658864
+19t 32713423 32751842 32703188 32692156 32737923 32614765 32597249 32707430
+20t 32952592 33021872 32887545 33060669 32928474 32933802 33036160 33007755
+21t 32990785 32984630 33019475 32953560 32989469 32988959 33021429 33040387
+22t 32825122 32755780 32788855 32781521 32723678 32749153 32846583 32804896
+23t 32379716 32456033 32398474 32390717 32403030 32439543 32446707 32406871
+24t 32654869 32573659 32567285 32582023 32575801 32605016 32521360 32556813
+25t 32663617 32664420 32673903 32661307 32708416 32712852 32672130 32635504
+26t 32620676 32559061 32656552 32697655 32597559 32577338 32647738 32557111
+27t 32643931 32629986 32692777 32614044 32593508 32562380 32567517 32684027
+28t 32730090 32769234 32692641 32780846 32761496 32609836 32768407 32732747
+29t 32564258 32622716 32612696 32515844 32542380 32549109 32532899 32516690
+30t 32542950 32537676 32500141 32564199 32555953 32653816 32571632 32522568
+31t 33024872 32899409 32890745 32918902 32908337 32900375 32974726 32956997
+32t 32538501 32513435 32512134 32599526 32638900 32600708 32569258 32544173
+33t 33079365 33029103 33098758 33032975 33022896 33048802 33053612 33024104
+34t 32359491 32372842 32453495 32475932 32482682 32546555 32429532 32446262
+35t 33023508 33013031 33020286 32901133 32984239 33036242 32925876 33019348
+36t 32667043 32553640 32620816 32630039 32537617 32609143 32578761 32550104
+37t 32956963 32939106 32979840 32950362 32889255 32956501 32906460 32918543
+38t 32772180 32829522 32781577 32823737 32763703 32782109 32716972 32797205
+39t 32391072 32409422 32319133 32324133 32508266 32401994 32391192 32347713
+40t 32313861 32273748 32276802 32344851 32666628 32370096 32321130 32351968
+         152      153      154      155      156      157      158      159
+1t  32944059 32670521 32687873 32733840 32616610 32707508 32633220 32681842
+2t  32749596 32593730 32635301 32726435 32590563 32581285 32629509 32603161
+3t  32739602 32606262 32581664 32598896 32584496 32597350 32680083 32649962
+4t  32634740 32717387 32704511 32696284 32736104 32681405 32753969 32679754
+5t  32757245 32610199 32582863 32649243 32594944 32580962 32650355 32608247
+6t  32660790 32590169 32688813 32784065 32642217 32673463 32726046 32637135
+7t  32588986 32407803 32363794 32405011 32405812 32425891 32382210 32346523
+8t  32464002 32418551 32453107 32442995 32475259 32373003 32506851 32429225
+9t  33215826 33032129 32911680 32990532 32978824 32914239 33003329 32948609
+10t 32787207 32765206 32697382 32796226 32795877 32819813 32835268 32759284
+11t 32741358 32677666 32676426 32709179 32658099 32660092 32766273 32635449
+12t 32987572 32713668 32705513 32692018 32683400 32624251 32700303 32715985
+13t 32778198 32625270 32692593 32700922 32695621 32622856 32687806 32625631
+14t 32697194 32783393 32645109 32681259 32652510 32742370 32713790 32683400
+15t 32967868 32942197 33040085 32929968 32954328 32942302 32978483 32963562
+16t 32539350 32520386 32518103 32574647 32523840 32578655 32550412 32585625
+17t 32472264 32435725 32447906 32510853 32513012 32461468 32420126 32368198
+18t 32802846 32526351 32529274 32555129 32573149 32589518 32611199 32532091
+19t 32608547 32626836 32594540 32673376 32756258 32663622 32687342 32665142
+20t 33159008 33026665 32957712 33010624 32987160 32997623 32985490 32947532
+21t 33036352 32942217 33034191 32995488 33029459 33013339 33001938 32942305
+22t 33046276 32751183 32786438 32943139 32741841 32824661 32854434 32810834
+23t 32385275 32384766 32428869 32473383 32377719 32443241 32409112 32448279
+24t 32497472 32496830 32561069 32568116 32598872 32600387 32601713 32608882
+25t 32630481 32656602 32676597 32669231 32676511 32657560 32647969 32645644
+26t 32591028 32516997 32591373 32620073 32595496 32564952 32650891 32670883
+27t 32727449 32571465 32585643 32696576 32629520 32621758 32621856 32559931
+28t 32687114 32812054 32707636 32765345 32696373 32782223 32745407 32737837
+29t 32532519 32492712 32550857 32604790 32523790 32557749 32603603 32561499
+30t 32479017 32540569 32521979 32492527 32566522 32492095 32601166 32569508
+31t 33162079 32919648 32945886 32918824 32843633 32954696 32928469 32894538
+32t 32610551 32552687 32524401 32501953 32459733 32597544 32484960 32545923
+33t 33032891 33086236 33083958 33108595 33073070 33053026 33071344 33073588
+34t 32561011 32457666 32487035 32436117 32388244 32404123 32470674 32363411
+35t 32993806 32941401 32900401 32933534 32887427 32930539 33049367 32909252
+36t 32847338 32630872 32531750 32528946 32576371 32546141 32610184 32617184
+37t 33188398 32905053 32953025 32952439 32970440 32923254 32981728 32891812
+38t 32990211 32750118 32795406 32761413 32812333 32817264 32736182 32795502
+39t 32443129 32379978 32350850 32317850 32353317 32358543 32375588 32342601
+40t 32234992 32249445 32325773 32291016 32318710 32316694 32292756 32277889
+         160
+1t  32650128
+2t  32703652
+3t  32605885
+4t  32653860
+5t  32664831
+6t  32605646
+7t  32402425
+8t  32447868
+9t  33004842
+10t 32747549
+11t 32672517
+12t 32766473
+13t 32704470
+14t 32646717
+15t 32992661
+16t 32519396
+17t 32581602
+18t 32548250
+19t 32653212
+20t 32895284
+21t 33023101
+22t 32827252
+23t 32389394
+24t 32617909
+25t 32690061
+26t 32632864
+27t 32672971
+28t 32758552
+29t 32574983
+30t 32532911
+31t 32953288
+32t 32529403
+33t 33055831
+34t 32456662
+35t 32980884
+36t 32612715
+37t 32951972
+38t 32772326
+39t 32385216
+40t 32382975
+# 2026-11-07 14:26:54 -03: Finished testing

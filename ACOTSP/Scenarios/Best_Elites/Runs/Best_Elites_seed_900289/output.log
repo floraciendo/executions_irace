@@ -1,0 +1,412 @@
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.2.0.9000.e99d017
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/flora/R/x86_64-pc-linux-gnu-library/4.5/irace
+# called with: --only-test configurations.txt --scenario scenario.txt
+# 2026-11-10 23:49:24 -03: Checking scenario.
+# 2026-11-10 23:49:24 -03: Reading parameter file '/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_900289/parameters.txt'.
+# 2026-11-10 23:49:24 -03: 1 expression(s) specifying forbidden configurations read.
+## irace scenario:
+scenarioFile = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_900289/scenario.txt"
+execDir = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_900289/Results"
+parameterFile = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_900289/parameters.txt"
+parameters = <environment>
+initConfigurations = NULL
+configurationsFile = ""
+logFile = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_900289/Results/irace.Rdata"
+recoveryFile = ""
+instances = c("/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-1.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-10.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-102.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-103.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-104.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-106.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-107.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-108.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-109.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-11.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-110.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-111.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-112.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-113.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-114.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-115.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-117.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-119.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-12.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-120.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-121.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-122.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-124.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-126.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-127.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-129.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-13.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-130.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-131.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-132.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-133.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-134.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-135.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-136.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-137.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-138.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-139.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-14.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-140.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-15.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-16.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-17.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-18.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-19.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-2.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-20.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-201.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-203.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-204.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-205.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-206.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-207.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-208.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-209.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-21.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-210.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-211.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-212.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-214.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-215.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-216.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-217.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-219.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-22.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-220.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-221.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-222.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-223.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-224.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-226.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-227.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-228.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-229.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-23.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-230.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-231.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-232.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-233.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-234.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-235.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-236.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-237.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-238.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-239.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-24.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-240.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-25.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-26.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-27.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-28.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-29.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-30.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-301.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-303.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-304.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-305.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-306.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-307.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-308.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-309.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-31.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-310.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-311.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-312.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-313.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-314.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-316.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-317.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-318.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-319.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-320.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-321.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-322.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-323.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-324.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-326.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-327.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-328.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-329.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-33.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-331.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-332.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-333.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-334.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-336.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-337.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-338.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-339.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-34.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-340.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-35.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-36.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-37.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-38.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-39.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-40.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-401.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-402.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-403.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-404.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-405.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-406.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-407.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-408.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-409.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-410.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-411.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-412.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-413.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-414.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-415.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-416.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-417.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-418.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-419.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-420.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-421.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-422.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-423.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-424.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-425.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-426.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-427.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-428.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-429.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-430.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-431.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-433.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-434.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-435.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-436.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-437.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-438.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-439.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-440.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-501.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-503.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-504.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-505.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-506.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-508.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-509.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-510.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-511.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-512.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-514.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-515.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-516.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-517.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-518.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-519.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-520.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-521.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-522.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-523.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-524.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-525.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-526.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-527.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-528.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-530.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-531.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-533.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-534.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-535.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-536.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-537.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-538.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-539.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-540.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-6.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-601.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-602.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-603.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-605.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-607.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-608.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-609.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-610.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-611.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-612.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-613.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-614.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-615.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-616.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-617.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-618.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-619.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-620.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-621.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-622.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-623.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-624.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-625.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-626.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-627.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-628.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-629.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-630.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-631.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-632.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-633.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-634.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-635.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-636.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-637.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-638.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-640.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-7.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-701.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-703.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-704.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-705.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-706.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-707.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-708.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-709.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-710.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-712.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-713.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-714.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-715.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-716.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-718.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-719.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-720.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-721.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-722.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-723.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-724.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-725.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-726.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-727.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-728.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-729.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-730.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-731.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-732.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-733.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-734.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-735.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-736.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-737.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-738.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-739.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-740.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-8.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-801.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-802.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-803.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-804.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-805.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-807.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-808.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-809.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-810.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-811.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-812.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-813.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-814.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-815.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-816.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-817.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-818.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-819.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-820.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-821.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-822.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-823.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-824.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-826.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-827.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-828.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-829.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-830.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-831.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-833.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-834.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-835.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-836.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-837.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-838.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-839.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-840.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-9.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-901.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-902.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-903.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-904.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-905.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-906.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-908.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-909.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-910.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-911.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-912.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-913.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-914.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-915.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-916.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-917.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-918.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-919.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-920.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-921.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-922.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-923.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-924.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-926.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-927.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-928.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-929.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-930.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-931.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-932.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-933.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-934.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-935.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-936.tsp", "/home/flora/executions_irace/ACOTSP/TrainingInstances/2000-939.tsp")
+trainInstancesDir = "/home/flora/executions_irace/ACOTSP/TrainingInstances"
+trainInstancesFile = ""
+sampleInstances = TRUE
+testInstancesDir = "/home/flora/executions_irace/ACOTSP/TestingInstances"
+testInstancesFile = ""
+testInstances = c("1t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-101.tsp", "2t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-105.tsp", "3t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-116.tsp", "4t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-118.tsp", "5t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-123.tsp", "6t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-125.tsp", "7t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-128.tsp", "8t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-202.tsp", "9t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-213.tsp", "10t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-218.tsp", "11t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-225.tsp", "12t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-3.tsp", "13t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-302.tsp", "14t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-315.tsp", "15t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-32.tsp", "16t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-325.tsp", "17t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-330.tsp", "18t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-335.tsp", "19t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-4.tsp", "20t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-432.tsp", "21t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-5.tsp", "22t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-502.tsp", "23t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-507.tsp", "24t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-513.tsp", "25t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-529.tsp", "26t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-532.tsp", "27t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-604.tsp", "28t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-606.tsp", "29t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-639.tsp", "30t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-702.tsp", "31t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-711.tsp", "32t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-717.tsp", "33t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-806.tsp", "34t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-825.tsp", "35t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-832.tsp", "36t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-907.tsp", "37t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-925.tsp", "38t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-937.tsp", "39t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-938.tsp", "40t" = "/home/flora/executions_irace/ACOTSP/TestingInstances/2000-940.tsp")
+testNbElites = 1L
+testIterationElites = FALSE
+testType = "friedman"
+firstTest = 5L
+blockSize = 1L
+eachTest = 1L
+targetRunner = "/home/flora/executions_irace/ACOTSP/Scenarios/Best_Elites/Runs/Best_Elites_seed_900289/target-runner"
+targetRunnerLauncher = ""
+targetCmdline = "{configurationID} {instanceID} {seed} {instance} {bound} {targetRunnerArgs}"
+targetRunnerRetries = 0L
+targetRunnerTimeout = 0L
+targetRunnerData = ""
+targetRunnerParallel = NULL
+targetEvaluator = NULL
+deterministic = FALSE
+maxExperiments = 5500L
+minExperiments = NA_character_
+maxTime = 0L
+budgetEstimation = 0.05
+minMeasurableTime = 0.01
+parallel = 20L
+loadBalancing = TRUE
+mpi = FALSE
+batchmode = "0"
+quiet = FALSE
+debugLevel = 0L
+seed = 900289L
+softRestart = TRUE
+softRestartThreshold = 1e-04
+elitist = TRUE
+elitistNewInstances = 1L
+elitistLimit = 2L
+repairConfiguration = NULL
+capping = FALSE
+cappingAfterFirstTest = FALSE
+cappingType = "median"
+boundType = "candidate"
+boundMax = NULL
+boundDigits = 0L
+boundPar = 1L
+boundAsTimeout = TRUE
+postselection = TRUE
+aclib = FALSE
+nbIterations = 0L
+nbExperimentsPerIteration = 0L
+minNbSurvival = 0L
+nbConfigurations = 0L
+mu = 5L
+confidence = 0.95
+initSampling = "sobol"
+## end of irace scenario
+# 2026-11-10 23:49:24 -03: Read 160 configuration(s) from file 'configurations.txt'
+# 2026-11-10 23:49:24 -03: Testing configurations (in the order given as input): 
+    algorithm localsearch alpha beta  rho ants   q0 rasrank elitistants nnls
+1         acs           3  2.61 2.28 0.72   63 0.70      NA          NA   18
+2         acs           3  2.20 6.00 0.58   49 0.31      NA          NA   13
+3         acs           3  3.72 4.36 0.72   67 0.21      NA          NA   12
+4         acs           3  1.97 8.28 0.94   40 0.24      NA          NA   14
+5         acs           3  3.53 8.19 0.63   63 0.55      NA          NA   15
+6         acs           3  2.29 4.56 0.55   64 0.86      NA          NA   10
+7         acs           3  4.04 7.62 0.78   70 0.83      NA          NA   13
+8         acs           3  3.66 2.40 0.91   67 0.17      NA          NA   16
+9         acs           3  4.64 3.85 0.85   75 0.70      NA          NA   17
+10        acs           3  4.22 7.19 0.86   72 0.58      NA          NA   15
+11        acs           3  1.50 3.28 0.52   48 0.82      NA          NA   13
+12        acs           3  4.23 8.70 0.64   65 0.39      NA          NA   12
+13        acs           3  2.35 4.06 0.40   54 0.65      NA          NA   14
+14        acs           3  2.58 6.69 0.20   40 0.48      NA          NA   15
+15        acs           3  3.46 4.01 0.68   70 0.78      NA          NA   16
+16        acs           3  3.11 6.16 0.08   40 0.68      NA          NA   18
+17        acs           3  2.94 4.65 0.95   65 0.38      NA          NA   10
+18        acs           3  2.15 6.42 0.92   50 0.06      NA          NA   13
+19        acs           3  4.42 6.56 0.82   72 0.68      NA          NA   13
+20        acs           3  2.87 7.86 0.85   61 0.70      NA          NA   12
+21        acs           3  2.69 0.52 0.14   36 0.80      NA          NA   33
+22        acs           3  2.80 9.30 0.32   42 0.15      NA          NA   11
+23        acs           3  2.35 7.84 0.21   27 0.51      NA          NA   10
+24        acs           3  2.26 5.46 0.05   14 0.58      NA          NA   11
+25        acs           3  3.94 9.01 0.15   41 0.47      NA          NA   11
+26        acs           3  3.05 0.21 0.14   52 0.95      NA          NA   21
+27        acs           3  2.60 6.01 0.51   58 0.70      NA          NA   21
+28        acs           3  2.73 1.56 0.65   53 0.15      NA          NA   30
+29        acs           3  3.57 8.62 0.19   44 0.18      NA          NA   19
+30        acs           3  1.98 4.82 0.22   43 0.68      NA          NA   11
+31        acs           3  1.52 4.01 0.43   27 0.71      NA          NA   12
+32        acs           3  2.70 2.93 0.17   54 0.79      NA          NA   12
+33        acs           3  4.53 8.58 0.11   45 0.21      NA          NA   16
+34        acs           3  3.30 6.30 0.04   31 0.48      NA          NA   10
+35        acs           3  2.57 7.66 0.57   41 0.17      NA          NA   13
+36        acs           3  3.29 7.58 0.52   58 0.85      NA          NA   19
+37        ras           3  3.19 1.90 0.40   49   NA      13          NA   34
+38        acs           3  2.18 4.26 0.54   49 0.26      NA          NA    9
+39        acs           3  3.35 7.08 0.74   63 0.39      NA          NA   15
+40        ras           3  3.14 3.73 0.91   72   NA      17          NA   19
+41        acs           3  4.21 7.84 0.63   63 0.23      NA          NA   14
+42        acs           3  4.68 6.21 0.77   76 0.73      NA          NA   10
+43        acs           3  1.90 0.61 0.52   51 0.85      NA          NA   11
+44        acs           3  2.42 1.96 0.39   45 0.20      NA          NA   12
+45        acs           3  3.54 4.09 0.19   54 0.35      NA          NA   13
+46        acs           3  2.88 5.64 0.26   51 0.53      NA          NA   14
+47        acs           3  4.30 8.51 0.72   67 0.29      NA          NA   11
+48        acs           3  4.38 8.68 0.98   70 0.74      NA          NA   15
+49        acs           3  3.99 5.58 0.10   53 0.85      NA          NA   13
+50        acs           3  2.47 5.73 0.27   46 0.33      NA          NA   13
+51        acs           3  4.52 6.47 0.88   72 0.48      NA          NA   14
+52        acs           3  3.14 7.54 0.90   66 0.64      NA          NA   14
+53        acs           3  2.87 2.72 0.13   46 0.71      NA          NA   12
+54        acs           3  3.15 4.84 0.48   59 0.61      NA          NA   11
+55        acs           3  3.39 2.79 0.20   49 0.17      NA          NA   11
+56        acs           3  3.26 3.86 0.51   61 0.35      NA          NA   12
+57        acs           3  2.13 4.52 0.48   48 0.34      NA          NA   15
+58        acs           3  3.65 8.31 0.19   47 0.22      NA          NA   13
+59        acs           3  1.67 2.13 0.34   30 0.31      NA          NA   13
+60        acs           3  3.57 4.59 0.91   77 0.88      NA          NA   10
+61        acs           3  3.54 7.47 0.27   48 0.58      NA          NA   36
+62        acs           3  2.64 6.51 0.85   57 0.34      NA          NA   10
+63        acs           3  3.13 8.75 0.53   49 0.52      NA          NA   18
+64       mmas           3  4.95 8.39 0.13   20   NA      NA          NA   22
+65        acs           3  2.94 5.94 0.96   68 0.66      NA          NA    8
+66       mmas           3  2.54 2.66 0.13   17   NA      NA          NA    9
+67        ras           3  2.49 1.46 0.81   78   NA      21          NA   38
+68        ras           3  2.85 2.44 0.49   41   NA      14          NA   19
+69        acs           3  4.72 8.63 0.49   63 0.72      NA          NA   35
+70        acs           3  2.83 4.28 0.56   65 0.86      NA          NA   13
+71        ras           3  2.25 2.33 0.89   64   NA      16          NA   10
+72       mmas           3  1.12 6.61 0.78   20   NA      NA          NA   10
+73        acs           3  1.99 8.27 0.99   42 0.45      NA          NA   11
+74        acs           3  1.99 3.77 0.75   51 0.52      NA          NA   21
+75        acs           3  3.36 7.99 0.56   25 0.08      NA          NA   31
+76        acs           3  4.37 5.09 0.02   30 0.65      NA          NA   13
+77        acs           3  2.34 4.74 0.27   44 0.31      NA          NA   10
+78        acs           3  3.04 5.95 0.33   59 0.67      NA          NA   13
+79        acs           3  2.37 5.76 0.84   58 0.32      NA          NA   11
+80        ras           3  4.76 5.04 0.92   95   NA      18          NA   37
+81        acs           3  4.55 4.90 0.66   69 0.32      NA          NA   14
+82        acs           3  2.01 3.89 0.60   62 0.86      NA          NA   11
+83        acs           3  2.87 6.53 0.69   59 0.32      NA          NA   11
+84        acs           3  2.53 5.70 0.80   62 0.65      NA          NA   14
+85        acs           3  3.00 2.37 0.60   61 0.51      NA          NA   14
+86        acs           3  2.28 3.85 0.54   54 0.52      NA          NA   14
+87        acs           3  3.43 4.71 0.29   54 0.07      NA          NA   13
+88        acs           3  2.76 3.45 0.68   61 0.21      NA          NA   14
+89        acs           3  4.49 2.08 0.57   74 0.86      NA          NA   10
+90        acs           3  3.34 4.27 0.40   63 0.77      NA          NA   12
+91        acs           3  2.13 4.80 0.50   47 0.32      NA          NA   12
+92        acs           3  2.18 4.46 0.33   50 0.30      NA          NA   12
+93        acs           3  4.86 6.52 0.23   60 0.64      NA          NA   19
+94        acs           3  1.86 4.65 0.82   51 0.63      NA          NA   18
+95        acs           3  3.61 5.07 0.69   70 0.68      NA          NA   11
+96        acs           3  3.29 5.18 0.27   52 0.34      NA          NA   14
+97        acs           3  3.96 4.10 0.65   67 0.20      NA          NA   13
+98        acs           3  2.39 3.33 0.12   52 0.88      NA          NA   12
+99        acs           3  4.39 4.13 0.07   52 0.66      NA          NA   11
+100       acs           3  3.58 4.92 0.62   63 0.25      NA          NA   15
+101       ras           3  3.42 5.62 0.95   59   NA      19          NA   24
+102       acs           3  2.71 5.47 0.38   51 0.50      NA          NA   10
+103       acs           3  1.83 4.97 0.41   40 0.54      NA          NA   24
+104       acs           3  2.56 3.04 0.37   56 0.75      NA          NA   13
+105       acs           3  4.05 5.80 0.68   71 0.64      NA          NA   11
+106       acs           3  1.87 5.07 0.35   40 0.70      NA          NA   16
+107       acs           3  2.52 4.27 0.15   48 0.88      NA          NA   18
+108       acs           3  4.76 7.80 0.15   54 0.43      NA          NA   14
+109       acs           3  2.17 2.03 0.47   46 0.26      NA          NA    9
+110       acs           3  3.96 8.60 0.51   65 0.83      NA          NA   11
+111       acs           3  2.92 8.58 0.88   65 0.41      NA          NA   11
+112       acs           3  4.22 4.24 0.26   64 0.84      NA          NA   17
+113       acs           3  2.66 6.37 0.10   38 0.04      NA          NA   12
+114       acs           3  2.35 7.79 0.24   38 0.44      NA          NA   14
+115       acs           3  2.68 9.23 0.61   45 0.13      NA          NA   15
+116       acs           3  2.95 8.62 0.75   53 0.13      NA          NA   10
+117       acs           3  3.68 8.37 0.60   54 0.42      NA          NA   33
+118       acs           3  3.19 6.72 0.31   52 0.40      NA          NA   11
+119       acs           3  3.92 7.11 0.56   62 0.33      NA          NA   13
+120       acs           3  2.86 6.29 0.24   52 0.80      NA          NA   17
+121       acs           3  3.14 4.60 0.14   51 0.72      NA          NA   11
+122       acs           3  2.11 4.33 0.70   50 0.14      NA          NA   15
+123       acs           3  2.80 1.44 0.32   51 0.30      NA          NA   12
+124       acs           3  3.64 3.40 0.22   63 0.85      NA          NA   11
+125       acs           3  3.76 6.04 0.87   70 0.49      NA          NA   10
+126       acs           3  3.68 2.64 0.24   66 0.90      NA          NA   12
+127       acs           3  2.79 3.31 0.64   64 0.58      NA          NA   14
+128       acs           3  2.81 3.76 0.79   62 0.10      NA          NA   16
+129       acs           3  4.47 6.73 0.89   71 0.12      NA          NA   15
+130       acs           3  4.85 5.97 0.66   72 0.34      NA          NA   12
+131       acs           3  2.99 0.76 0.09   38 0.72      NA          NA   15
+132       acs           3  3.59 3.45 0.23   55 0.58      NA          NA   12
+133       acs           3  3.41 7.27 0.65   67 0.62      NA          NA   13
+134       acs           3  3.01 2.17 0.42   67 0.86      NA          NA   10
+135       acs           3  3.02 7.05 0.61   55 0.34      NA          NA   10
+136       acs           3  4.45 3.94 0.58   73 0.71      NA          NA   13
+137       acs           3  4.74 6.00 0.11   53 0.40      NA          NA   11
+138       acs           3  3.32 3.83 0.16   54 0.43      NA          NA   11
+139       acs           3  4.94 5.41 0.74   73 0.42      NA          NA   13
+140       acs           3  4.65 5.81 0.44   67 0.17      NA          NA   10
+141       acs           3  1.43 4.83 0.52   34 0.53      NA          NA   14
+142       acs           3  1.08 2.29 0.85   20 0.78      NA          NA   14
+143       acs           3  2.08 3.46 0.62   46 0.24      NA          NA   13
+144       acs           3  2.06 3.91 0.49   54 0.56      NA          NA   16
+145       acs           3  1.46 3.42 0.82   33 0.50      NA          NA   12
+146       acs           3  3.09 6.56 0.44   52 0.18      NA          NA   12
+147       acs           3  4.40 8.51 0.89   70 0.73      NA          NA   12
+148      mmas           3  0.99 5.78 0.81   46   NA      NA          NA   14
+149       acs           3  2.79 7.23 0.84   65 0.67      NA          NA   13
+150       acs           3  2.55 8.32 0.49   52 0.37      NA          NA   10
+151       acs           3  3.94 5.54 0.77   70 0.69      NA          NA   19
+152      mmas           3  0.96 4.56 0.72   23   NA      NA          NA   22
+153       acs           3  4.34 4.32 0.18   60 0.67      NA          NA   11
+154       acs           3  3.29 4.10 0.37   62 0.77      NA          NA   19
+155       acs           3  2.83 3.31 0.38   67 0.84      NA          NA   16
+156       acs           3  1.95 4.07 0.94   58 0.53      NA          NA   12
+157       acs           3  2.85 5.52 0.89   61 0.53      NA          NA   16
+158       acs           3  2.70 4.27 0.58   62 0.32      NA          NA   11
+159       acs           3  3.82 3.50 0.16   51 0.31      NA          NA   14
+160       acs           3  2.00 4.62 0.75   45 0.60      NA          NA   14
+    dlb
+1     1
+2     1
+3     1
+4     1
+5     1
+6     1
+7     1
+8     1
+9     1
+10    1
+11    1
+12    1
+13    1
+14    1
+15    1
+16    1
+17    1
+18    1
+19    1
+20    1
+21    1
+22    0
+23    0
+24    0
+25    0
+26    0
+27    0
+28    0
+29    0
+30    0
+31    0
+32    0
+33    0
+34    1
+35    0
+36    0
+37    0
+38    0
+39    0
+40    0
+41    1
+42    1
+43    1
+44    1
+45    1
+46    1
+47    1
+48    1
+49    1
+50    1
+51    1
+52    1
+53    1
+54    1
+55    1
+56    1
+57    1
+58    1
+59    1
+60    1
+61    0
+62    0
+63    0
+64    0
+65    0
+66    0
+67    1
+68    0
+69    0
+70    0
+71    0
+72    0
+73    0
+74    0
+75    1
+76    0
+77    0
+78    0
+79    0
+80    1
+81    1
+82    1
+83    1
+84    1
+85    1
+86    1
+87    1
+88    1
+89    1
+90    1
+91    1
+92    1
+93    1
+94    1
+95    1
+96    1
+97    1
+98    1
+99    1
+100   1
+101   0
+102   1
+103   1
+104   1
+105   1
+106   1
+107   1
+108   1
+109   1
+110   1
+111   1
+112   0
+113   1
+114   1
+115   0
+116   0
+117   0
+118   0
+119   1
+120   1
+121   1
+122   1
+123   1
+124   1
+125   1
+126   1
+127   1
+128   1
+129   1
+130   1
+131   1
+132   1
+133   1
+134   1
+135   1
+136   1
+137   1
+138   1
+139   1
+140   1
+141   1
+142   1
+143   1
+144   1
+145   1
+146   1
+147   1
+148   1
+149   1
+150   1
+151   1
+152   1
+153   1
+154   1
+155   1
+156   1
+157   1
+158   1
+159   1
+160   1
