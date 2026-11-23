@@ -54,12 +54,10 @@ def main():
         type=int,
         nargs="+",
         default=[
-            #100001, 200009, 300025, 400049, 500081,
-            #600121, 700169, 
-	    800225
-	    #, 900289, 100361
-            #110411, 120529, 130625, 140729, 150841,
-            #160961, 171089, 181225, 191369, 201521
+            # 100001, 200009, 300025, 400049, 500081,
+            # 600121, 700169, 800225, 900289, 100361,
+            110411, 120529, 130625, 140729, 150841,
+            160961, 171089, 181225, 191369, 201521
         ],
         help="Random seeds for testing (default: 20 predefined seeds)"
     )
@@ -86,8 +84,8 @@ def main():
     directories = [
         # ('Scenarios/BLHS-BL/Base', 'Scenarios/BLHS-BL/Runs', 'BLHS-BL'),
         # ('Scenarios/CHAOS-BL/Base', 'Scenarios/CHAOS-BL/Runs', 'CHAOS-BL'),
-        ('Scenarios/SOBOL-BL/Base', 'Scenarios/SOBOL-BL/Runs', 'SOBOL-BL'),
-        # ('Scenarios/UNIF-BL/Base', 'Scenarios/UNIF-BL/Runs', 'UNIF-BL'),
+        # ('Scenarios/SOBOL-BL/Base', 'Scenarios/SOBOL-BL/Runs', 'SOBOL-BL'),
+        ('Scenarios/UNIF-BL/Base', 'Scenarios/UNIF-BL/Runs', 'UNIF-BL'),
         # ('Scenarios/BLHS-BH/Base', 'Scenarios/BLHS-BH/Runs', 'BLHS-BH'),
         # ('Scenarios/CHAOS-BH/Base', 'Scenarios/CHAOS-BH/Runs', 'CHAOS-BH'),
         # ('Scenarios/SOBOL-BH/Base', 'Scenarios/SOBOL-BH/Runs', 'SOBOL-BH'),
